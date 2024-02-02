@@ -8,3 +8,8 @@ bp = Blueprint('publić', __name__, url_prefix='/')
 @bp.route('/faq', methods=['GET'])
 def faq():
     return render_template('public/faq.html')
+
+
+@bp.route('/policy', methods=['GET'])
+def policy():
+    return render_template('public/policy.html')
