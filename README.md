@@ -26,5 +26,5 @@ Alle Source Dateien finden sich im [src](src) Ordner.
 
 ```bash
 cd src
-flask --app src/flaskr run --debug
+flask --app flaskr run --debug
 ```
