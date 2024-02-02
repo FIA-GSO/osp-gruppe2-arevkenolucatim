@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestätigen Sie die Daten</title>
+</head>
+<body>
+    <h2>Am GSO Marketplace mit folgenden Daten anmelden</h2>
+    <table>
+        <!-- Fields are filled on pageload with data from localstorage -->
+        <tr>
+            <th>Firmenname</th>
+            <td id="fieldCompanyName"></td>
+        </tr>
+        <tr>
+            <th>E-Mail</th>
+            <td id="fieldEmail"></td>
+        </tr>
+    </table>
+
+    <p id="messageBox" style="display: false;"></p>
+    <input id="btnSend" type="button" value="Senden" onclick="sendApplication()">
+</body>
+
+<script type="text/javascript">
+    const fieldCompany = document.getElementById("fieldCompanyName");
+    const fieldEmail = document.getElementById("fieldEmail");
+
+    const messageBox = document.getElementById("messageBox");
+    const send = document.getElementById("btnSend");
+
+    let data = JSON.parse(localStorage.getItem("companyData"));
+    fieldCompany.innerText = data["companyName"];
+    fieldEmail.innerText = data["email"];
+
+    function sendApplication() {
+        messageBox.innerText = "Vielen Dank für Ihre Anmeldung am Marketplace GSO!";
+
+        send.style.display = "none";
+        // TODO: Send data to db
+    }
+</script>
+</html>

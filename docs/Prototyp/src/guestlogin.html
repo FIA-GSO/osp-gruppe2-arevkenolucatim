@@ -9,16 +9,22 @@
     <div id="informationForm">
         <input type="text" id="companyName" placeholder="Firmenname...">
         <input type="text" id="email" placeholder="E-Mail">
-        <input type="button" value="Am Marketplace GSO teilnehmen" onclick="sendApplication()">
+        <input type="button" value="Am Marketplace GSO teilnehmen" onclick="transmitData()">
     </div>
 </body>
 
 <script type="text/javascript">
-    function sendApplication() {
+    function transmitData() {
         let company = document.getElementById("companyName").value;
         let email = document.getElementById("email").value;
 
-        console.log("Company " + company + " with E-Mail " + email); // TODO: Send to server
+        let data = {
+            "companyName": company,
+            "email": email
+        };
+
+        localStorage.setItem("companyData", JSON.stringify(data)); // TODO: Currently saved in localStorage, solution tbd
+        window.location.href = "confirmApplication.html";
     }
 </script>
 </html>
