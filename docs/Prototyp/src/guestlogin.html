@@ -20,6 +20,9 @@
         <input type="number" id="tables" placeholder="Anzahl benötigter Tische">
         <input type="number" id="chairs" placeholder="Anzahl benötigter Stühle">
 
+        <input type="text" id="presentation" placeholder="ggf. Präsentationsthema">
+        <input type="number" id="presentationDuration" placeholder="ggf. Präsentationslänge">
+
         <input type="button" value="Am Marketplace GSO teilnehmen" onclick="transmitData()">
     </div>
 </body>
@@ -33,6 +36,8 @@
         let contact = document.getElementById("contact").value;
         let phone = document.getElementById("phone").value;
         let day = dayDropDown.options[dayDropDown.selectedIndex].text;
+        let presentation = document.getElementById("presentation").value;
+        let presentationDuration = document.getElementById("presentationDuration").value;
         let notes = document.getElementById("notes").value;
         let tables = document.getElementById("tables").value;
         let chairs = document.getElementById("chairs").value;
@@ -46,7 +51,9 @@
             "day": day,
             "notes": notes,
             "tables": tables,
-            "chairs": chairs
+            "chairs": chairs,
+            "presentation": presentation,
+            "presentationDuration": presentationDuration
         };
 
         localStorage.setItem("companyData", JSON.stringify(data)); // TODO: Currently saved in localStorage, solution tbd
