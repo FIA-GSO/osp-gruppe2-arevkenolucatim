@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS faq;
+
+CREATE TABLE faq (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    question  TEXT NOT NULL,
+    answer    TEXT NOT NULL
+);
