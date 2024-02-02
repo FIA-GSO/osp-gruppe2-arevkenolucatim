@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastzugang</title>
+</head>
+<body>
+    <div id="informationForm">
+        <input type="text" id="companyName" placeholder="Firmenname...">
+        <input type="text" id="email" placeholder="E-Mail">
+        <input type="button" value="Am Marketplace GSO teilnehmen" onclick="sendApplication()">
+    </div>
+</body>
+
+<script type="text/javascript">
+    function sendApplication() {
+        let company = document.getElementById("companyName").value;
+        let email = document.getElementById("email").value;
+
+        console.log("Company " + company + " with E-Mail " + email); // TODO: Send to server
+    }
+</script>
+</html>
