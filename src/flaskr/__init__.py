@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template
 from . import db
+from . import auth
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -9,10 +10,12 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
-    @app.route('/hello')
-    def hello():
+    db.init_app(app)
+
+    @app.route('/')
+    def index():
         return render_template("index.html")
 
-    db.init_app(app)
+    app.register_blueprint(auth.bp)
 
     return app
