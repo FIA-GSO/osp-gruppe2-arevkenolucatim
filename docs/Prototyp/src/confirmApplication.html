@@ -7,16 +7,8 @@
 </head>
 <body>
     <h2>Am GSO Marketplace mit folgenden Daten anmelden</h2>
-    <table>
-        <!-- Fields are filled on pageload with data from localstorage -->
-        <tr>
-            <th>Firmenname</th>
-            <td id="fieldCompanyName"></td>
-        </tr>
-        <tr>
-            <th>E-Mail</th>
-            <td id="fieldEmail"></td>
-        </tr>
+    <table id="companyData">
+        <!-- Filled on page load -->
     </table>
 
     <p id="messageBox" style="display: false;"></p>
@@ -24,13 +16,24 @@
 </body>
 
 <script type="text/javascript">
-    const fieldCompany = document.getElementById("fieldCompanyName");
-    const fieldEmail = document.getElementById("fieldEmail");
-
+    const table = document.getElementById("companyData");
     const messageBox = document.getElementById("messageBox");
     const send = document.getElementById("btnSend");
 
     let data = JSON.parse(localStorage.getItem("companyData"));
+
+    for (let k in data) {
+        let row = document.createElement("tr");
+        let key = document.createElement("th");
+        let value = document.createElement("td");
+
+        key.innerText = k;
+        value.innerText = data[k];
+        
+        table.appendChild(row);
+        row.appendChild(key);
+        row.appendChild(value);
+    };
     fieldCompany.innerText = data["companyName"];
     fieldEmail.innerText = data["email"];
 
