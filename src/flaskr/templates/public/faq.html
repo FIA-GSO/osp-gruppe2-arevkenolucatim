@@ -1,1 +1,20 @@
 {% extends 'base.html' %}
+
+{% block content %}
+    {% for question in questions %}
+        <div>
+            <header>
+                <div>
+                    <h1>{{ question['question'] }}</h1>
+                </div>
+                <div>
+                    <h1>{{ question['answer'] }}</h1>
+                </div>
+            </header>
+        </div>
+    
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

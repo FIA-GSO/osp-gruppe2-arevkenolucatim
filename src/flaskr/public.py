@@ -7,7 +7,12 @@ bp = Blueprint('publić', __name__, url_prefix='/')
 
 @bp.route('/faq', methods=['GET'])
 def faq():
-    return render_template('public/faq.html')
+    db = get_db()
+    questions = db.execute(
+        'SELECT * from faq'
+    ).fetchall()
+
+    return render_template('public/faq.html', questions=questions)
 
 
 @bp.route('/policy', methods=['GET'])
