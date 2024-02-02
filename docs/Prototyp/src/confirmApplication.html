@@ -16,6 +16,19 @@
 </body>
 
 <script type="text/javascript">
+    const keyValueMapping = {
+        "companyName": "Firmenname",
+        "email": "E-Mail",
+        "contact": "Ansprechpartner",
+        "phone": "Telefon",
+        "day": "Tag",
+        "notes": "Anmerkungen",
+        "tables": "Anzahl Tische",
+        "chairs": "Anzahl Stühle",
+        "presentation": "Präsentationsthema",
+        "presentationDuration": "Präsentationdauer"
+    };
+
     const table = document.getElementById("companyData");
     const messageBox = document.getElementById("messageBox");
     const send = document.getElementById("btnSend");
@@ -27,7 +40,7 @@
         let key = document.createElement("th");
         let value = document.createElement("td");
 
-        key.innerText = k;
+        key.innerText = keyValueMapping[k];
         value.innerText = data[k];
         
         table.appendChild(row);
