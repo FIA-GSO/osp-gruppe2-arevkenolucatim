@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template
-from . import db
-from . import auth
+from . import db, auth, internal, public
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -17,5 +16,7 @@ def create_app(test_config=None):
         return render_template("index.html")
 
     app.register_blueprint(auth.bp)
+    app.register_blueprint(internal.bp)
+    app.register_blueprint(public.bp)
 
     return app
