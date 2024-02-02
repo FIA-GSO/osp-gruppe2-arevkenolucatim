@@ -21,3 +21,10 @@ Alle Source Dateien finden sich im [src](src) Ordner.
 
 - Flask Server
 - Frontend
+
+## Start
+
+```bash
+cd src
+flask --app flaskr run --debug
+```
