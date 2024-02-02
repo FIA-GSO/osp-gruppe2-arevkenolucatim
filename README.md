@@ -39,3 +39,10 @@ Alle Source Dateien finden sich im [src](src) Ordner.
 cd src
 flask --app flaskr run --debug
 ```
+
+### DB
+
+```bash
+cd src
+flask --app flaskr init-db
+```
