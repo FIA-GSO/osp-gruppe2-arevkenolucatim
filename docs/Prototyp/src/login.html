@@ -7,10 +7,18 @@
 </head>
 <body>
     <div>
-        Test Login
-        <input type="text" value="E-Mail">
-        <input type="password" value="passwort">
-        <input type="button" value="Login" onclick="">
+        <input type="text" id="email" placeholder="E-Mail">
+        <input type="password" id="password" placeholder="passwort">
+        <input type="button" value="Login" onclick="login()">
     </div>
 </body>
+
+<script type="text/javascript">
+    function login(){
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        console.log("email: "+ email + "pass: " + password)
+    }
+</script>
 </html>

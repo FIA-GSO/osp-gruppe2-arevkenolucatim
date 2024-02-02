@@ -7,10 +7,22 @@
 </head>
 <body>
     <div>
-        Test Registrieren
-        firmennamen
-        email
-        passwort
+        <input type="text" id="companyName" placeholder=" Firmenname">
+        <input type="email" id="email" placeholder="E-Mail">
+        <input type="ansprechpartner" id="contact" placeholder="Ansprechpartner">
+        <input type="password" id="password" placeholder="Password">
+        <input type="button" value="Registrieren" onclick="register()">
     </div>
 </body>
+
+<script type="text/javascript">
+    function register(){
+        let companyName = document.getElementById("companyName").value;
+        let contact = document.getElementById("contact").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        console.log("name: " + companyName + "email: "+ email + "contact: " + contact +"pass: " + password)
+    }
+</script>
 </html>
