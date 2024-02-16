@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="companyName" placeholder=" Firmenname">
+        <input type="email" id="email" placeholder="E-Mail">
+        <input type="ansprechpartner" id="contact" placeholder="Ansprechpartner">
+        <input type="password" id="password" placeholder="Password">
+        <input type="button" value="Abspeichern" onclick="save()">
+    </div>
+</body>
+
+<script type="text/javascript">
+    function save(){
+        let companyName = document.getElementById("companyName").value;
+        let contact = document.getElementById("contact").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        // ToDo: Daten in Datenbank schreiben
+        console.log("name: " + companyName + "email: "+ email + "contact: " + contact +"pass: " + password)
+    }
+</script>
+</html>
