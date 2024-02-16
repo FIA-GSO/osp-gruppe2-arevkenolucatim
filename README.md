@@ -37,6 +37,24 @@ Alle Source Dateien finden sich im [src](src) Ordner.
 
 ```bash
 cd src
+```
+
+Windows:
+```bash
+# In cmd.exe
+.venv\Scripts\activate.bat
+# In PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+Linux:
+```bash
+source .venv/bin/activate
+```
+
+Starten:
+
+```bash
 flask --app flaskr run --debug
 ```
 
