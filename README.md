@@ -52,6 +52,13 @@ Linux:
 source .venv/bin/activate
 ```
 
+Python Pakete installieren:
+
+``` bash
+pip install -r requirements.txt # 'resuirements.txt' liegt im Ordner './src/' ab.
+```
+
+
 Starten:
 
 ```bash
