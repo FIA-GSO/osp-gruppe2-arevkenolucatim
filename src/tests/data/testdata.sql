@@ -18,8 +18,8 @@ INSERT INTO Faq (Question, Answer) VALUES
     ('Was bin Ich?', 'C'),
     ('Wie bin Ich?', 'D');
 
-INSERT INTO Application VALUES
-/* ID, UserID, Days, Remarks, Tische, Chairs, LectureTopic, LectureLenght, Status*/
+INSERT INTO Request VALUES
+/* ID, UserID, Days, Remarks, TableCount, ChairCount, LectureTopic, LectureLenght, Status*/
     (1,7,2,'dis parturient',1,4,'mattis. Cras eget nisi dictum',45,1),
     (2,6,2,'penatibus et',0,5,'Duis ac arcu. Nunc mauris.',3,1),
     (3,6,3,'elit. Nulla',1,3,'ac mi eleifend egestas. Sed',10,1),
