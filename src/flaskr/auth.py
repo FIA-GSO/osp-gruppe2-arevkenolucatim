@@ -7,7 +7,24 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('auth/register.html')
+    if request.method == 'POST':
+        sql = '''
+            INSERT INTO User (Company,Password,Email,Contact,Telephone) VALUES (?, ?, ?, ?, ?)
+        '''
+
+        company = request.form['companyName']
+        mail = request.form['email']
+        contact = request.form['contact']
+        passw = request.form['password']
+        telephone = request.form['telephone']
+
+        db = get_db()
+        db.execute(sql, (company,passw,mail,contact,telephone))
+        db.commit()
+
+        return redirect('register')
+    else:
+        return render_template('auth/register.html')
 
 
 @bp.route('/login', methods=['GET', 'POST'])

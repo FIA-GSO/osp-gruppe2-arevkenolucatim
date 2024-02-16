@@ -5,7 +5,76 @@
 {% endblock %}
 
 {% block content %}
-<div class="text-center">
-<a class="btn btn-primary">register</a>
+<div>
+    <form action="{{ url_for('auth.register') }}" method="post" id="registerFrm">
+        <div class="mb-3">
+            <label for="firmenName" class="form-label">Firmenname</label>
+            <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-Mail</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="telephone" class="form-label">Telefon</label>
+            <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone">
+        </div>
+        <div class="mb-3">
+            <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
+            <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact">
+        </div>
+        <div class="mb-3">
+            <label for="passwort" class="form-label">Passwort</label>
+            <input type="password" class="form-control" id="passwort" placeholder="****" name="password">
+        </div>
+
+        <button class="btn btn-primary" id="registerBtn">Registieren</button>
+    </form>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="registerModalLabel">Registrieren</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                    <button type="button" class="btn btn-primary" id="registerFinal">Registrieren</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const register = document.querySelector('#registerBtn')
+const form = document.querySelector('#registerFrm')
+const registerFinal = document.querySelector('#registerFinal')
+
+const mdl = new bootstrap.Modal(document.getElementById('registerModal'), {
+    keyboard: false
+})
+
+register.addEventListener('click', (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    mdl.show()
+})
+
+registerFinal.addEventListener('click', (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    form.submit()
+    mdl.hide()
+})
+
+</script>
 {% endblock %}

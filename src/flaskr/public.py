@@ -9,7 +9,7 @@ bp = Blueprint('public', __name__, url_prefix='/')
 def faq():
     db = get_db()
     questions = db.execute(
-        'SELECT * from faq'
+        'SELECT * from FAQ'
     ).fetchall()
 
     return render_template('public/faq.html', questions=questions)
