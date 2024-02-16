@@ -1,0 +1,31 @@
+-----------------------------
+User-Tabelle
+- ID (Int)
+- Firmenname (string)
+- Password (string)
+- Email (string)
+- Ansprechpartner (string)
+- Telefonnummer (string)
+
+
+FaQ-Tabelle
+- ID (Int)
+- Frage (string)
+- Antwort (string)
+
+
+Antrag-Tabelle
+- AntragsID (Int)
+- UserID (Int)
+- TeilnahmeTag (Int)
+- Bemerkungen (string)
+- Tische (Int)
+- Stühle (Int)
+- FachvortragInfo (string)
+- Status (Int)
+
+-----------------------------
+
+Temp-Tabelle für Gäste?
+- E-mail (string)
+- Firmenname (string)
