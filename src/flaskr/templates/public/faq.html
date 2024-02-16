@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="accordion" id="faq-accordion">
     {% for question in questions %}
-        <div>
-            <header>
-                <div>
-                    <h1>{{ question['question'] }}</h1>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ question['id'] }}" aria-expanded="true" aria-controls="collapse{{ question['id'] }}">
+                    {{ question['question'] }}
+                </button>
+            </h2>
+            <div id="collapse{{ question['id'] }}" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
+                <div class="accordion-body">
+                    {{ question['answer'] }}
                 </div>
-                <div>
-                    <h1>{{ question['answer'] }}</h1>
-                </div>
-            </header>
+            </div>
         </div>
-    
-        {% if not loop.last %}
-            <hr>
-        {% endif %}
     {% endfor %}
+    </div>
 {% endblock %}
