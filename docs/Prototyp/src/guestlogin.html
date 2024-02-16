@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Gastzugang</title>
+</head>
+<body>
+    <div id="informationForm" class="container-sm w-25">
+        <div class="row">
+            <input class="m-2" type="text" id="companyName" placeholder="Firmenname...">
+            <input class="m-2" type="email" id="email" placeholder="E-Mail...">
+            <input class="m-2" type="text" id="contact" placeholder="Ansprechpartner...">
+            <input class="m-2" type="text" id="phone" placeholder="Telefon...">
+            <select class="m-2" id="day">
+                <!-- TODO: Assign correct date to options; maybe load this from db -->
+                <option>Tag 1 - xx.xx.2024</option>
+                <option>Tag 2 - xx.xx.2024</option>
+            </select>
+            <textarea class="m-2" id="notes" cols="50" rows="10" placeholder="Anmerkungen..."></textarea>
+            
+            <input class="m-2" type="number" id="tables" placeholder="Anzahl benötigter Tische">
+            <input class="m-2" type="number" id="chairs" placeholder="Anzahl benötigter Stühle">
+            
+            <div>
+                <input type="checkbox" name="hasPresentation" id="hasPresentation" onclick="hasPresentationToggle()">
+                <label for="hasPresentation">Ich möchte eine Präsentation halten.</label>
+            </div>
+            <input class="m-2" type="text" id="presentation" placeholder="Präsentationsthema">
+            <input class="m-2" type="number" id="presentationDuration" placeholder="Präsentationslänge (Minuten)">
+
+            <input class="m-2 btn btn-primary" type="button" value="Am Marketplace GSO teilnehmen" onclick="transmitData()">
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function hasPresentationToggle() {
+        const hasPres = document.getElementById("hasPresentation");
+        const topic = document.getElementById("presentation");
+        const length = document.getElementById("presentationDuration");
+
+        topic.style.visibility = hasPres.checked ? "visible" : "hidden";
+        length.style.visibility = hasPres.checked ? "visible" : "hidden";
+    }
+
+    hasPresentationToggle(); // Initial call to hide / show
+
+    function transmitData() {
+        const dayDropDown = document.getElementById("day");
+
+        let company = document.getElementById("companyName").value;
+        let email = document.getElementById("email").value;
+        let contact = document.getElementById("contact").value;
+        let phone = document.getElementById("phone").value;
+        let day = dayDropDown.options[dayDropDown.selectedIndex].text;
+        let notes = document.getElementById("notes").value;
+        let tables = document.getElementById("tables").value;
+        let chairs = document.getElementById("chairs").value;
+
+        let hasPresentation = document.getElementById("hasPresentation").checked;
+        let presentation = document.getElementById("presentation").value;
+        let presentationDuration = document.getElementById("presentationDuration").value;
+        
+
+        let data = {
+            "companyName": company,
+            "email": email,
+            "contact": contact,
+            "phone": phone,
+            "day": day,
+            "notes": notes,
+            "tables": tables,
+            "chairs": chairs,
+            "hasPresentation": hasPresentation ? "Ja" : "Nein",
+            "presentation": hasPresentation ? presentation : "N/A",
+            "presentationDuration": hasPresentation ? presentationDuration : "N/A"
+        };
+
+        localStorage.setItem("companyData", JSON.stringify(data)); // TODO: Currently saved in localStorage, solution tbd
+        window.location = "confirmApplication.html";
+    }
+</script>
+</html>
