@@ -1,5 +1,4 @@
 /*
-DROP TABLE IF EXISTS faq;
 
 CREATE TABLE faq (
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -7,32 +6,33 @@ CREATE TABLE faq (
     answer    TEXT NOT NULL
 );
 */
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS User (
-	ID	        INTEGER NOT NULL,
+DROP TABLE IF EXISTS Faq;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Request;
+
+CREATE TABLE User (
+	ID	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	Company	    TEXT NOT NULL,
 	Password	TEXT NOT NULL,
 	Email	    TEXT NOT NULL,
 	Contact	    TEXT,
-	Telephone	TEXT,
-	PRIMARY KEY(ID AUTOINCREMENT)
+	Telephone	TEXT
 );
-CREATE TABLE IF NOT EXISTS Faq (
-	ID	        INTEGER NOT NULL,
+
+CREATE TABLE Faq (
+	ID	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	Question	TEXT,
-	Answer	    TEXT,
-	PRIMARY KEY(ID AUTOINCREMENT)
+	Answer	    TEXT
 );
-CREATE TABLE IF NOT EXISTS Application (
-	ID	            INTEGER NOT NULL,
+
+CREATE TABLE Request (
+	ID	            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	UserID	        INTEGER NOT NULL,
 	Days	        INTEGER NOT NULL,
 	Remarks	        TEXT,
-	Table	        INTEGER,
-	Chair	        INTEGER,
+	TableCount	    INTEGER,
+	ChairCount	    INTEGER,
 	LectureTopic	TEXT,
-	LectureLenght   INTEGER,
-	Status	        INTEGER NOT NULL,
-	PRIMARY KEY(ID,UserID)
+	LectureLength   INTEGER,
+	Status	        INTEGER NOT NULL
 );
-COMMIT;
