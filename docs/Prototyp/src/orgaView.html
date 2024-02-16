@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Organisationsansicht</title>
 </head>
 <body>
-	<table>
-		<tr>
+	<table class="table">
+		<thead>
 			<th>Firmenname</th>
 			<th>E-Mail</th>
 			<th>Ansprechpartner</th>
@@ -19,33 +20,37 @@
 			<th>Detail</th>
 			<th>Bestätigen</th>
 			<th>Ablehnen</th>
-		</tr>
-		<tr>
-			<td>ABC AG Co. oHG</td>
-			<td>max.mustermann@abc.com</td>
-			<td>Max Mustermann</td>
-			<td>01234 56789</td>
-			<td>Tag 1</td>
-			<td>N/A</td>
-			<td>1</td>
-			<td>2</td>
-			<td><input type="button" value="Detail"></td>
-			<td><input type="button" value="Bestätigen"></td>
-			<td><input type="button" value="Ablehnen"></td>
-		</tr>
-		<tr>
-			<td>CBA GmbH</td>
-			<td>erika.musterfrau@abc.com</td>
-			<td>Erika Musterfrau</td>
-			<td>9876 54321</td>
-			<td>Tag 2</td>
-			<td>Wir benötigen eine Leinwand für eine fortlaufende Beamerpräsentation,</td>
-			<td>1</td>
-			<td>3</td>
-			<td><input type="button" value="Detail"></td>
-			<td><input type="button" value="Bestätigen"></td>
-			<td><input type="button" value="Ablehnen"></td>
-		</tr>
+			<!-- TODO: Add Status column? -->
+		</thead>
+		<tbody>
+			<!-- Add one new row per record -->
+			<tr>
+				<td>ABC AG Co. oHG</td>
+				<td>max.mustermann@abc.com</td>
+				<td>Max Mustermann</td>
+				<td>01234 56789</td>
+				<td>Tag 1</td>
+				<td>N/A</td>
+				<td>1</td>
+				<td>2</td>
+				<td><input type="button" value="Detail"></td>
+				<td><input type="button" value="Bestätigen"></td>
+				<td><input type="button" value="Ablehnen"></td>
+			</tr>
+			<tr>
+				<td>CBA GmbH</td>
+				<td>erika.musterfrau@abc.com</td>
+				<td>Erika Musterfrau</td>
+				<td>9876 54321</td>
+				<td>Tag 2</td>
+				<td>Wir benötigen eine Leinwand für eine fortlaufende Beamerpräsentation,</td>
+				<td>1</td>
+				<td>3</td>
+				<td><input type="button" value="Detail"></td>
+				<td><input type="button" value="Bestätigen"></td>
+				<td><input type="button" value="Ablehnen"></td>
+			</tr>
+		</tbody>
 	</table>
 </body>
 </html>
