@@ -1,15 +1,10 @@
-/*
-
-CREATE TABLE faq (
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    question  TEXT NOT NULL,
-    answer    TEXT NOT NULL
-);
-*/
 DROP TABLE IF EXISTS Faq;
 DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Request;
 
+/*
+ * Alle registrierten Benutzer und Organisationsteam
+ */
 CREATE TABLE User (
 	ID	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	Company	    TEXT NOT NULL,
@@ -19,12 +14,18 @@ CREATE TABLE User (
 	Telephone	TEXT
 );
 
+/*
+ * FAQ
+ */
 CREATE TABLE Faq (
 	ID	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	Question	TEXT,
 	Answer	    TEXT
 );
 
+/*
+ * Anmeldeformulardaten
+ */
 CREATE TABLE Request (
 	ID	            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	UserID	        INTEGER NOT NULL,
