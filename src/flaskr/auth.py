@@ -26,30 +26,28 @@ def register():
         db.execute(sql, (company,hashed,mail,contact,telephone))
         db.commit()
 
-        return redirect('register')
+        return redirect('login')
     else:
         return render_template('auth/register.html')
 
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('auth/login.html')
-    else:
-        # TODO: This should be a more sophisticated check, instead of just checking whether they're empty.
-        if request.form["email"] != "" and request.form["password"] != "":
-            sql = '''
-            SELECT * FROM User WHERE
-            Email = ? AND
-            Password = ?
-            '''
+    if request.method == 'POST':
+        passw = bytes(request.form['password'], 'utf-8')
+        hashed = bcrypt.hashpw(passw, salt)
 
-            cur = get_db().execute(sql, (request.form["email"], request.form["password"]))
-            if cur.fetchone() != None:
-                return redirect('../company') # '..' required to step out of 'auth/'
+        sql = '''
+        SELECT * FROM User WHERE Email = ? AND Password = ?
+        '''
         
-    return "Error" # TODO: Replace with error page
-            
+        cur = get_db().execute(sql, (request.form["email"], hashed))
+        if cur.fetchone() != None:
+            return redirect('../company')
+        else:
+            return render_template('error.html')
+    else:
+        return render_template('auth/login.html')
 
 
 @bp.route('/guestLogin', methods=['GET', 'POST'])
