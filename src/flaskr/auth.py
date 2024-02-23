@@ -60,6 +60,7 @@ def guestLogin():
         day = request.form['day']
         tables = request.form['tables']
         chairs = request.form['chairs']
+        remarks = request.form['remarks']
         presentationTopic = request.form['presentationTopic']
         presentationDuration = request.form['presentationDuration']
 
@@ -69,6 +70,7 @@ def guestLogin():
             mail=mail,
             telephone=telephone,
             contact=contact,
+            remarks=remarks,
             day=day,
             tables=tables,
             chairs=chairs,
