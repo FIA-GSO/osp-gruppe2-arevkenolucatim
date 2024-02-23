@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <form action="{{ url_for('auth.login') }}" method="post">
+    <form action="{{ url_for('auth.login') }}" method="post" id="frm">
         <div class="mb-3">
             <label for="email" class="form-label">E-Mail</label>
             <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email" required>
@@ -18,7 +18,7 @@
         </div>
 
         <div>
-            <input class="btn btn-primary w-100 mb-4" type="submit" value="Login">
+            <input class="btn btn-primary w-100 mb-4" type="button" id="login" value="Login">
 
             <a class="btn-link m-2" href="{{ url_for('auth.register') }}">Stattdessen Registieren</a>
             <a class="btn-link m-2" href="{{ url_for('auth.guestLogin') }}">Als Gast anmelden</a>
@@ -29,4 +29,25 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const cur = localStorage.getItem('loggedInUser')
+    if (cur != null || cur != undefined)
+        window.location = "{{ url_for('internal.company_view') }}"
+
+    const login = document.getElementById('login')
+
+    login.addEventListener('click', e => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        const current = document.getElementById('email')
+        localStorage.setItem("loggedInUser", current.value)
+        
+        const frm = document.getElementById('frm')
+        frm.submit()
+    })
+</script>
 {% endblock %}
