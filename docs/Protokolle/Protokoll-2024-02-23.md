@@ -12,7 +12,10 @@
 
 Arbeitspakete erledigt:
 
--
+- 3.1.1 Registrierungssystem erstellen
+- 3.1.2 Loginsystem erstellen
+- 3.0.0 Datenbankanbindung
+- 3.2.2 FAQ Implementieren
 
 Auf nächste Iteration verschoben:
 
