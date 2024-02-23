@@ -9,24 +9,29 @@
     <form action="{{ url_for('auth.register') }}" method="post" id="registerFrm">
         <div class="mb-3">
             <label for="firmenName" class="form-label">Firmenname</label>
-            <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName">
+            <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">E-Mail</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
         </div>
         <div class="mb-3">
             <label for="telephone" class="form-label">Telefon</label>
-            <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone">
+            <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone" required>
         </div>
         <div class="mb-3">
             <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
-            <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact">
+            <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact" required>
         </div>
         <div class="mb-3">
             <label for="passwort" class="form-label">Passwort</label>
-            <input type="password" class="form-control" id="passwort" placeholder="****" name="password">
+            <input type="password" class="form-control" id="passwort" placeholder="****" name="password" required>
         </div>
+        <div class="mb-3">
+            <label for="passwortConfirm" class="form-label">Passwort erneut eingeben</label>
+            <input type="password" class="form-control" id="passwortConfirm" placeholder="****" required>
+        </div>
+        <div id="error" style="color: red"></div>
 
         <button class="btn btn-primary" id="registerBtn">Registieren</button>
     </form>
@@ -39,7 +44,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <h6>Bitte überprüfen Sie Ihre Daten:</h6>
+                    <ul>
+                        <li>Name: <span id="lblFirmenName"></span></li>
+                        <li>EMail: <span id="lblEmail"></span></li>
+                        <li>Telefon: <span id="lblTelephone"></span></li>
+                        <li>Ansprechpartner: <span id="lblAnsprechPartner"></span></li>
+                    </ul>
 
+                    <i>Info: Sie können Ihre Informationen später noch ändern</i>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
@@ -64,6 +77,33 @@ const mdl = new bootstrap.Modal(document.getElementById('registerModal'), {
 register.addEventListener('click', (e) => {
     e.preventDefault()
     e.stopPropagation()
+
+    const firmenName = document.getElementById('firmenName').value
+    const email = document.getElementById('email').value
+    const telephone = document.getElementById('telephone').value
+    const ansprechPartner = document.getElementById('ansprechPartner').value
+    const passwort = document.getElementById('passwort').value
+    const passwortConfirm = document.getElementById('passwortConfirm').value
+
+    const lblFirmenName = document.getElementById('lblFirmenName')
+    const lblEmail = document.getElementById('lblEmail')
+    const lblTelephone = document.getElementById('lblTelephone')
+    const lblAnsprechPartner = document.getElementById('lblAnsprechPartner')
+
+    const error = document.getElementById('error')
+
+    if (passwort != passwortConfirm) {
+        error.innerHTML = "Die Passwörter stimmen nicht überein"
+        return
+    }
+
+    if (firmenName == "" || email == "" || telephone == "" || ansprechPartner == "" || passwort == "")
+        return
+
+    lblFirmenName.innerHTML = firmenName
+    lblEmail.innerHTML = email
+    lblTelephone.innerHTML = telephone
+    lblAnsprechPartner.innerHTML = ansprechPartner
 
     mdl.show()
 })
