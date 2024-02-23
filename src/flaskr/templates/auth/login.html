@@ -5,14 +5,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="container w-25 text-center">
-    <h2 class="mt-5 mb-5">Anmeldung</h2>
-    <div class="row">
-        <form action="{{ url_for('auth.login') }}" method="post">
-            <input class="m-2" name="email" type="text" id="email" placeholder="E-Mail">
-            <input class="m-2" name="password" type="password" id="password" placeholder="Passwort">
-            <input class="m-2 btn btn-primary" type="submit" value="Login">
-        </form>
-    </div>
+<div>
+    <form action="{{ url_for('auth.login') }}" method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">E-Mail</label>
+            <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Passwort</label>
+            <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
+        </div>
+
+        <input class="m-2 btn btn-primary" type="submit" value="Login">
+    </form>
 </div>
 {% endblock %}
