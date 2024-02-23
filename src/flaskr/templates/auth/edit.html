@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block header %}
-<h1>edit</h1>
+<h1>Ihre Daten</h1>
 {% endblock %} {% block content %}
 <div class="d-flex justify-content-center">
   <form action="{{ url_for('auth.edit') }}" method="post" id="editFrm">
@@ -122,7 +122,12 @@
 
     const error = document.getElementById("error");
 
-    if (firmenName == "" || email == "" || telephone == "" || ansprechPartner == "" ||)
+    if (
+      firmenName == "" ||
+      email == "" ||
+      telephone == "" ||
+      ansprechPartner == ""
+    )
       return;
 
     lblFirmenName.innerHTML = firmenName;
