@@ -2,8 +2,10 @@ import functools
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db
+import bcrypt
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+salt = bcrypt.gensalt()
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -15,11 +17,13 @@ def register():
         company = request.form['companyName']
         mail = request.form['email']
         contact = request.form['contact']
-        passw = request.form['password']
+        passw = bytes(request.form['password'], 'utf-8')
         telephone = request.form['telephone']
 
+        hashed = bcrypt.hashpw(passw, salt)
+
         db = get_db()
-        db.execute(sql, (company,passw,mail,contact,telephone))
+        db.execute(sql, (company,hashed,mail,contact,telephone))
         db.commit()
 
         return redirect('register')
