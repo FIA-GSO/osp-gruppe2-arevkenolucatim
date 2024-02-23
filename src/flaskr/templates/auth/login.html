@@ -6,28 +6,30 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <form action="{{ url_for('auth.login') }}" method="post" id="frm">
-        <div class="mb-3">
-            <label for="email" class="form-label">E-Mail</label>
-            <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email" required>
-        </div>
+    <div class="w-50">
+        <form action="{{ url_for('auth.login') }}" method="post" id="frm">
+            <div class="mb-3">
+                <label for="email" class="form-label">E-Mail</label>
+                <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email" required>
+            </div>
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Passwort</label>
-            <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
-        </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Passwort</label>
+                <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
+            </div>
 
-        <div>
-            <input class="btn btn-primary w-100 mb-4" type="button" id="login" value="Login">
+            <div>
+                <input class="btn btn-primary w-100 mb-4" type="button" id="login" value="Login">
 
-            <a class="btn-link m-2" href="{{ url_for('auth.register') }}">Stattdessen Registieren</a>
-            <a class="btn-link m-2" href="{{ url_for('auth.guestLogin') }}">Als Gast anmelden</a>
+                <a class="btn-link m-2" href="{{ url_for('auth.register') }}">Stattdessen Registieren</a>
+                <a class="btn-link m-2" href="{{ url_for('auth.guestLogin') }}">Als Gast anmelden</a>
 
-            {% if error %}
-                <b style="color: red">Benutzername oder Passwort falsch!</b>
-            {% endif %}
-        </div>
-    </form>
+                {% if error %}
+                    <b style="color: red">Benutzername oder Passwort falsch!</b>
+                {% endif %}
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
 

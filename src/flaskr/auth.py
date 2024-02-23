@@ -83,4 +83,9 @@ def guestLogin():
 
 @bp.route('/edit', methods=['GET', 'POST'])
 def edit():
+    # if request.method
+    # db = get_db()
+    # data = db.execute(
+    #     "SELECT * from User where Email =" + localStorage.
+    # ).fetchall()
     return render_template('auth/edit.html')

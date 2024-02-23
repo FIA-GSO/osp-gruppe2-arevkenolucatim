@@ -6,64 +6,66 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <form action="{{ url_for('auth.guestLogin') }}" method="post" id="registerFrm">
-        <div class="mb-3">
-            <label for="firmenName" class="form-label">Firmenname</label>
-            <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">E-Mail</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
-        </div>
-        <div class="mb-3">
-            <label for="telephone" class="form-label">Telefon</label>
-            <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone" required>
-        </div>
-        <div class="mb-3">
-            <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
-            <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="remarks" class="form-label">Anmerkungen</label>
-            <textarea id="remarks" class="form-control" name="remarks"></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="day" class="form-label">Tag</label>
-            <select class="form-select" id="day" name="day" required>
-                <option>Tag 1</option>
-                <option>Tag 2</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="tables" class="form-label">Anzahl benötigter Tische</label>
-            <input type="number" class="form-control" id="tables" name="tables">
-        </div>
-        <div class="mb-3">
-            <label for="chairs" class="form-label">Anzahl benötigter Stühle</label>
-            <input type="number" class="form-control" id="chairs" name="chairs">
-        </div>
-
-        <div class="mb-3">
-            <label for="hasPresentation" class="form-label">Ich möchte eine Präsentation halten</label>
-            <input type="checkbox" name="hasPresentation" id="hasPresentation" onchange="hasPresentationToggle()">
-        </div>
-
-        <div id="presentation" style="display: none">
+    <div class="w-50">
+        <form action="{{ url_for('auth.guestLogin') }}" method="post" id="registerFrm">
             <div class="mb-3">
-                <label for="presentation" class="form-label">Präsentationsthema</label>
-                <input type="text" class="form-control" id="presentation" name="presentationTopic">
-            </div>    
-            <div class="mb-3">
-                <label for="presentationDuration" class="form-label">Präsentationslänge (Minuten)</label>
-                <input type="number" class="form-control" id="presentationDuration" name="presentationDuration">
+                <label for="firmenName" class="form-label">Firmenname</label>
+                <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-Mail</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="telephone" class="form-label">Telefon</label>
+                <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone" required>
+            </div>
+            <div class="mb-3">
+                <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
+                <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact" required>
+            </div>
 
-        <button class="btn btn-primary w-100" id="loginBtn">Anmelden</button>
-    </form>
+            <div class="mb-3">
+                <label for="remarks" class="form-label">Anmerkungen</label>
+                <textarea id="remarks" class="form-control" name="remarks"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="day" class="form-label">Tag</label>
+                <select class="form-select" id="day" name="day" multiple required>
+                    <option>Tag 1</option>
+                    <option>Tag 2</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="tables" class="form-label">Anzahl benötigter Tische</label>
+                <input type="number" class="form-control" id="tables" name="tables">
+            </div>
+            <div class="mb-3">
+                <label for="chairs" class="form-label">Anzahl benötigter Stühle</label>
+                <input type="number" class="form-control" id="chairs" name="chairs">
+            </div>
+
+            <div class="mb-3">
+                <label for="hasPresentation" class="form-label">Ich möchte eine Präsentation halten</label>
+                <input type="checkbox" name="hasPresentation" id="hasPresentation" onchange="hasPresentationToggle()">
+            </div>
+
+            <div id="presentation" style="display: none">
+                <div class="mb-3">
+                    <label for="presentation" class="form-label">Präsentationsthema</label>
+                    <input type="text" class="form-control" id="presentation" name="presentationTopic">
+                </div>    
+                <div class="mb-3">
+                    <label for="presentationDuration" class="form-label">Präsentationslänge (Minuten)</label>
+                    <input type="number" class="form-control" id="presentationDuration" name="presentationDuration">
+                </div>
+            </div>
+
+            <button class="btn btn-primary w-100" id="loginBtn">Anmelden</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
 
