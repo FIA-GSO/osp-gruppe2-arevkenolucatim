@@ -6,38 +6,64 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <form action="{{ url_for('internal.request_confirm') }}" method="post" id="registerFrm">
-        <b>Wichtig: Die Daten können nicht mehr geändert werden</b>
+    <div class="w-50">
+        <form action="{{ url_for('internal.request_confirm') }}" method="post" id="registerFrm">
+            <b>Wichtig: Die Daten können nicht mehr geändert werden</b>
 
-        <ul class="list-unstyled">
-            <li>Firma: {{ company }}</li>
-            <li>EMail: {{ mail }}</li>
-            <li>Telefon: {{ telephone }}</li>
-            <li>Anmerkungen: {{ remarks }}</li>
-            <li>Ansprechpartner: {{ contact }}</li>
-            <li>Tag: {{ day }}</li>
-            <li>Anzahl Tische: {{ tables }}</li>
-            <li>Anzahl Stühle: {{ chairs }}</li>
+            <div class="row mt-4 mb-4">
+                <div class="col-md-6">
+                    <label for="company" class="form-label mt-2">Firma:</label>
+                    <li>{{ company }}</li>
 
-            {% if presentationTopic %}
-            <li>Präsentationsthema: {{ presentationTopic }}</li>
-            <li>Präsentationslänge: {{ presentationDuration }}</li>
-            {% endif %}
-        </ul>
+                    <label for="mail" class="form-label mt-2">EMail:</label>
+                    <li>{{ mail }}</li>
 
-        <input type="hidden" value="{{ company }}" name="company" />
-        <input type="hidden" value="{{ mail }}" name="email" />
-        <input type="hidden" value="{{ telephone }}" name="telephone" />
-        <input type="hidden" value="{{ remarks }}" name="remarks" />
-        <input type="hidden" value="{{ contact }}" name="contact" />
-        <input type="hidden" value="{{ day }}" name="day" />
-        <input type="hidden" value="{{ tables }}" name="tables" />
-        <input type="hidden" value="{{ chairs }}" name="chairs" />
-        <input type="hidden" value="{{ presentationDuration }}" name="presentationDuration" />
-        <input type="hidden" value="{{ presentationTopic }}" name="presentationTopic" />
+                    <label for="telephone" class="form-label mt-2">Telefon:</label>
+                    <li>{{ telephone }}</li>
 
-        <a class="btn btn-secondary" href="{{ url_for('auth.guestLogin') }}">Zurück</a>
-        <input class="btn btn-primary" type="submit" value="Anmelden">
-    </form>
+                    <label for="remarks" class="form-label mt-2">Anmerkungen:</label>
+                    <li>{{ remarks }}</li>
+                </div>
+                <div class="col-md-6">
+                    <label for="contact" class="form-label mt-2">Ansprechpartner:</label>
+                    <li>{{ contact }}</li>
+
+                    <label for="day" class="form-label mt-2">Tag:</label>
+                    <li>{{ day }}</li>
+
+                    <label for="tables" class="form-label mt-2">Anzahl Tische:</label>
+                    <li>{{ tables }}</li>
+
+                    <label for="chairs" class="form-label mt-2">Anzahl Stühle:</label>
+                    <li>{{ chairs }}</li>
+
+                    {% if presentationTopic %}
+                    <label for="chairs" class="form-label mt-2">Präsentationsthema:</label>
+                    <li>Präsentationsthema: {{ presentationTopic }}</li>
+
+                    <label for="chairs" class="form-label mt-2">Präsentationslänge:</label>
+
+                    <li> {{ presentationDuration }}</li>
+                    {% endif %}
+                </div>
+            </div>
+
+            <input type="hidden" value="{{ company }}" name="company" />
+            <input type="hidden" value="{{ mail }}" name="email" />
+            <input type="hidden" value="{{ telephone }}" name="telephone" />
+            <input type="hidden" value="{{ remarks }}" name="remarks" />
+            <input type="hidden" value="{{ contact }}" name="contact" />
+            <input type="hidden" value="{{ day }}" name="day" />
+            <input type="hidden" value="{{ tables }}" name="tables" />
+            <input type="hidden" value="{{ chairs }}" name="chairs" />
+            <input type="hidden" value="{{ presentationDuration }}" name="presentationDuration" />
+            <input type="hidden" value="{{ presentationTopic }}" name="presentationTopic" />
+
+            <div class="row">
+                <a class="btn btn-secondary col m-1" href="{{ url_for('auth.guestLogin') }}">Zurück</a>
+                <input class="btn btn-primary col m-1" type="submit" value="Anmelden">
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
