@@ -1,1 +1,39 @@
 {% extends 'base.html' %}
+
+{% block content %}
+    <h2>Organizational view</h2>
+    <table>
+        <thead>
+			<th>Firmenname</th>
+			<th>E-Mail</th>
+			<th>Ansprechpartner</th>
+			<th>Telefon</th>
+			<th>Tag</th>
+			<th>Anmerkungen</th>
+			<th>Tische</th>
+			<th>Stühl</th>
+			<th>Detail</th>
+			<th>Bestätigen</th>
+			<th>Ablehnen</th>
+			<!-- TODO: Add Status column? -->
+		</thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row['Company'] }}</td>
+                    <td>{{ row['Email'] }}</td>
+                    <td>{{ row['Contact'] }}</td>
+                    <td>{{ row['Telephone'] }}</td>
+                    <td>{{ row['Days'] }}</td>
+                    <td>{{ row['Remarks'] }}</td>
+                    <td>{{ row['TableCount'] }}</td>
+                    <td>{{ row['ChairCount'] }}</td>
+                    <td><input type="button" value="Detail"></td>
+                    <td><input type="button" value="Bestätigen"></td>
+                    <td><input type="button" value="Ablehnen"></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
