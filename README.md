@@ -12,7 +12,6 @@
 - Luca Mienert
 
 ## Orga
-
 Im Projects-Tab und Issues-Tab finden sich die Arbeitspakete
 
 ### Docs
