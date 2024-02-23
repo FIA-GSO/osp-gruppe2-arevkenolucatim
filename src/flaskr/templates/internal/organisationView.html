@@ -4,22 +4,23 @@
     <h2>Organizational view</h2>
     <div class="d-flex justify-content-center w-100 text-center">
         <table>
-        <thead>
-            <th class="p-3">ID</th>
-			<th class="p-3">Firmenname</th>
-			<th class="p-3">E-Mail</th>
-			<th class="p-3">Ansprechpartner</th>
-			<th class="p-3">Telefon</th>
-			<th class="p-3">Tag</th>
-			<th class="p-3">Anmerkungen</th>
-			<th class="p-3">Tische</th>
-			<th class="p-3">Stühl</th>
-			<th class="p-3">Bestätigen</th>
-			<th class="p-3">Ablehnen</th>
-			<!-- TODO: Add Status column? -->
-		</thead>
-        <tbody>
-            {% for row in data %}
+            <thead>
+                <th class="p-3">ID</th>
+                <th class="p-3">Firmenname</th>
+                <th class="p-3">E-Mail</th>
+                <th class="p-3">Ansprechpartner</th>
+                <th class="p-3">Telefon</th>
+                <th class="p-3">Tag</th>
+                <th class="p-3">Anmerkungen</th>
+                <th class="p-3">Tische</th>
+                <th class="p-3">Stühl</th>
+                <th class="p-3">Status</th>
+                <th class="p-3"></th>
+                <th class="p-3"></th>
+                <!-- TODO: Add Status column? -->
+            </thead>
+            <tbody>
+                {% for row in data %}
                 <tr>
                     <td>{{ row['RequestID'] }}</td>
                     <td>{{ row['Company'] }}</td>
@@ -30,16 +31,17 @@
                     <td>{{ row['Remarks'] }}</td>
                     <td>{{ row['TableCount'] }}</td>
                     <td>{{ row['ChairCount'] }}</td>
-                    <form method="post" action="/accept">
-                        <td><input type="hidden" value="{{ row['RequestID'] }}" name="ID"><input type="submit" value="Bestätigen"></td>
+                    <td>{{ row['StatusText'] }}</td>
+                    <form method="post" action="/approval">
+                        <td><input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID"><input type="submit" value="✅"></td>
                     </form>
-                    <form method="post" action="/deny">
-                        <td><input type="hidden" value="{{ row['RequestID'] }}" name="ID"><input type="submit" value="Ablehnen"></td>
+                    <form method="post" action="/approval">
+                        <td><input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID"><input type="submit" value="❌"></td>
                     </form>
-                </tr>
-            {% endfor %}
-        </tbody>
-        </table>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
     </div>
 
 {% endblock %}

@@ -19,31 +19,26 @@ def request_confirm():
 def organisation_view():
     db = get_db()
     data = db.execute(
-        'SELECT r.ID ''RequestID'', u.Company, u.Email, u.Contact, u.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount FROM Request r INNER JOIN User u ON r.UserID = u.ID WHERE r.Status = 0'
+        "SELECT r.ID RequestID, u.Company, u.Email, u.Contact, u.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount, r.Status, CASE r.Status WHEN 0 THEN 'Ausstehend' WHEN 1 THEN 'Akzeptiert' WHEN 2 THEN 'Abgelehnt' ELSE 'Invalide' END StatusText FROM Request r INNER JOIN User u ON r.UserID = u.ID"
     ).fetchall()
 
     return render_template('internal/organisationView.html', data=data)
 
 
-@bp.route('/accept', methods=["POST"])
+@bp.route('/approval', methods=["POST"])
 def accept_request():
-    id = request.form.get("ID")
+    data = request.form.get("ID").split(":")
+    choice = data[0] # Either 'accept' or 'deny'
+    id = data[1]
+
+    print(f"Record {id} was set to {choice}")
+
     db = get_db()
     data = db.execute(
-        'UPDATE Request SET Status = 1 WHERE ID = ' + str(id)
+        f'UPDATE Request SET Status = {str(1 if choice == "accept" else 2)} WHERE ID = ' + str(id)
     ).fetchall()
     db.commit()
 
     return "<meta http-equiv=\"refresh\" content=\"0; url=/organisation\">"
 
 
-@bp.route("/deny", methods=["POST"])
-def deny_request():
-    id = request.form.get("ID")
-    db = get_db()
-    data = db.execute(
-        'UPDATE Request SET Status = 2 WHERE ID = ' + str(id)
-    ).fetchall()
-    db.commit()
-    
-    return "<meta http-equiv=\"refresh\" content=\"0; url=/organisation\">"
