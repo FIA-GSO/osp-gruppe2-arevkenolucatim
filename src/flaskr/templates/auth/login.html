@@ -17,13 +17,16 @@
             <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
         </div>
 
-        <input class="btn btn-primary w-100" type="submit" value="Login">
+        <div>
+            <input class="btn btn-primary w-100 mb-4" type="submit" value="Login">
 
-        <a class="btn-link text-center mt-4" href="{{ url_for('auth.register') }}">Stattdessen Registieren</a>
+            <a class="btn-link m-2" href="{{ url_for('auth.register') }}">Stattdessen Registieren</a>
+            <a class="btn-link m-2" href="{{ url_for('auth.guestLogin') }}">Als Gast anmelden</a>
 
-        {% if error %}
-            <b style="color: red">Benutzername oder Passwort falsch!</b>
-        {% endif %}
+            {% if error %}
+                <b style="color: red">Benutzername oder Passwort falsch!</b>
+            {% endif %}
+        </div>
     </form>
 </div>
 {% endblock %}
