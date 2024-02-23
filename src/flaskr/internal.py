@@ -68,5 +68,5 @@ def accept_request():
 
 
 @bp.route('/requestEdit', methods=['GET'])
-def requestEdit():
+def request_edit():
     return render_template('internal/requestEdit.html')
