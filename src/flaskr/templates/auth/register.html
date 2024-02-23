@@ -6,35 +6,43 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <form action="{{ url_for('auth.register') }}" method="post" id="registerFrm">
-        <div class="mb-3">
-            <label for="firmenName" class="form-label">Firmenname</label>
-            <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">E-Mail</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
-        </div>
-        <div class="mb-3">
-            <label for="telephone" class="form-label">Telefon</label>
-            <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone" required>
-        </div>
-        <div class="mb-3">
-            <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
-            <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact" required>
-        </div>
-        <div class="mb-3">
-            <label for="passwort" class="form-label">Passwort</label>
-            <input type="password" class="form-control" id="passwort" placeholder="****" name="password" required>
-        </div>
-        <div class="mb-3">
-            <label for="passwortConfirm" class="form-label">Passwort erneut eingeben</label>
-            <input type="password" class="form-control" id="passwortConfirm" placeholder="****" required>
-        </div>
-        <div id="error" style="color: red"></div>
-
-        <button class="btn btn-primary w-100" id="registerBtn">Registieren</button>
-    </form>
+    <div class="w-50">
+        <form action="{{ url_for('auth.register') }}" method="post" id="registerFrm">
+            <div class="mb-3">
+                <label for="firmenName" class="form-label">Firmenname</label>
+                <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="email" class="form-label">E-Mail</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="telephone" class="form-label">Telefon</label>
+                <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
+                <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="passwort" class="form-label">Passwort</label>
+                <input type="password" class="form-control" id="passwort" placeholder="****" name="password" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="passwortConfirm" class="form-label">Passwort erneut eingeben</label>
+                <input type="password" class="form-control" id="passwortConfirm" placeholder="****" required>
+            </div>
+        
+            <div id="error" style="color: red"></div>
+        
+            <button class="btn btn-primary w-100" id="registerBtn">Registrieren</button>
+        </form>
+    </div>
 
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
