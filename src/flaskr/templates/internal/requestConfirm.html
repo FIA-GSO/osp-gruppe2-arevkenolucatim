@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>Bestätigen</h1>
+<h1>Bestätigung der Daten</h1>
 {% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-center">
     <form action="{{ url_for('internal.request_confirm') }}" method="post" id="registerFrm">
-        <h2>Bitte überprüfen Sie Ihre Daten</h2>
         <b>Wichtig: Die Daten können nicht mehr geändert werden</b>
 
         <ul class="list-unstyled">
