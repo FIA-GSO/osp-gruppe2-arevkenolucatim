@@ -1,46 +1,34 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>Als Gast anmelden</h1>
+<h1>Gast</h1>
 {% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <form action="{{ url_for('auth.guestLogin') }}" method="post" id="registerFrm">
+        <h3>An welchen Tagen möchten Sie mit einem Informationsstand teilnehmen</h3>
         <div class="mb-3">
-            <label for="firmenName" class="form-label">Firmenname</label>
-            <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required>
+            <input type="checkbox" id="day1" name="day1" required>
+            <label for="day1" class="form-label">Tag</label>
+        
+            <input type="checkbox" id="day2" name="day2" required>
+            <label for="day2" class="form-label"><b>Tag 1:</b><br>Freitag, <b>24.01.2025, 11:00-16:00 Uhr</b><br>(Aufbau zwischen 09:00 und 10:30 Uhr)</label>
         </div>
+        
         <div class="mb-3">
-            <label for="email" class="form-label">E-Mail</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
-        </div>
-        <div class="mb-3">
-            <label for="telephone" class="form-label">Telefon</label>
-            <input type="text" class="form-control" id="telephone" placeholder="+49 ..." name="telephone" required>
-        </div>
-        <div class="mb-3">
-            <label for="ansprechPartner" class="form-label">Ansprechpartner</label>
-            <input type="text" class="form-control" id="ansprechPartner" placeholder="Max Mustermann" name="contact" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="remarks" class="form-label">Anmerkungen</label>
-            <textarea id="remarks" class="form-control" name="remarks"></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="day" class="form-label">Tag</label>
-            <select class="form-select" id="day" name="day" required>
-                <option>Tag 1</option>
-                <option>Tag 2</option>
-            </select>
+            <p><b>Standinformationen</b> (Westerwaldstr. 92, 51105 Köln, Sporthalle)</p>
+            <p>- Abmessungen der Standfläche: ca. 3m x 3m</p>
+            <p>- Stromanschluss (z.B. Beamer/Laptop) vorhanden. Darüber hinausgehenden Leistungsbedarf bitte unten im Freitextfeld <b>Bemerkungen</b> angeben.</p>
+            <p>- WLAN-Zugang vorhandenm</p>
+            <p><b>Bemerkungen</b> (ggf. Wünsche, besondere Standaufbauten, etc.):</p>
+            <textarea rows="4" cols="50" id="remarks">AAAAAAAAAA</textarea>
         </div>
 
         <div class="mb-3">
             <label for="tables" class="form-label">Anzahl benötigter Tische</label>
             <input type="number" class="form-control" id="tables" name="tables">
         </div>
+        
         <div class="mb-3">
             <label for="chairs" class="form-label">Anzahl benötigter Stühle</label>
             <input type="number" class="form-control" id="chairs" name="chairs">

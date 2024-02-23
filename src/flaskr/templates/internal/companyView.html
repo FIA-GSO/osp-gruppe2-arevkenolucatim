@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>Company view</p>
+<div>
+    <p>Company view</p>
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column w-25">
+            <a class="btn btn-primary mb-3" href="{{ url_for('internal.requestEdit')}}">Am Marketplace GSO anmelden</a>
+            <a class="btn btn-primary mb-3" href="{{ url_for('auth.edit')}}">Accountinformationen einsehen und bearbeiten</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

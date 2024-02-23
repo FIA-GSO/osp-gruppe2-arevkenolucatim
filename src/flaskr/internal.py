@@ -67,3 +67,6 @@ def accept_request():
     return "<meta http-equiv=\"refresh\" content=\"0; url=/organisation\">"
 
 
+@bp.route('/requestEdit', methods=['GET'])
+def requestEdit():
+    return render_template('internal/requestEdit.html')
