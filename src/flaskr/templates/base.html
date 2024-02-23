@@ -26,9 +26,9 @@
         </nav>
     </header>
 
-    <header class="m-4">
+    <section class="m-4 text-center">
         {% block header %}{% endblock %}
-    </header>
+    </section>
 
     <section class="container mb-4 mt-4" style="min-height: 50vh;">
         {% block content %}{% endblock %}
@@ -99,7 +99,7 @@
             e.stopPropagation()
 
             localStorage.removeItem('loggedInUser')
-            location.reload()
+            window.location = "{{ url_for('index') }}"
         })
     </script>
 </body>

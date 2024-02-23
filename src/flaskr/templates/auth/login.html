@@ -34,6 +34,8 @@
 {% block scripts %}
 <script>
     const cur = localStorage.getItem('loggedInUser')
+    const frm = document.getElementById('frm')
+
     if (cur != null || cur != undefined)
         window.location = "{{ url_for('internal.company_view') }}"
 
@@ -42,12 +44,11 @@
     login.addEventListener('click', e => {
         e.stopPropagation()
         e.preventDefault()
-
+        
+        frm.submit()
+        
         const current = document.getElementById('email')
         localStorage.setItem("loggedInUser", current.value)
-        
-        const frm = document.getElementById('frm')
-        frm.submit()
     })
 </script>
 {% endblock %}
