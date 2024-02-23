@@ -17,4 +17,9 @@ def request_confirm():
 
 @bp.route('/organisation', methods=['GET', 'POST'])
 def organisation_view():
-    return render_template('internal/organisationView.html')
+    db = get_db()
+    data = db.execute(
+        'SELECT u.Company, u.Email, u.Contact, u.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount FROM Request r INNER JOIN User u ON r.UserID = u.ID'
+    ).fetchall()
+
+    return render_template('internal/organisationView.html', data=data)
