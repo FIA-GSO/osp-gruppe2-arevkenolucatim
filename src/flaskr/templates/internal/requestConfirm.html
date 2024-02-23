@@ -1,1 +1,32 @@
 {% extends 'base.html' %}
+
+{% block header %}
+<h1>Bestätigen</h1>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <form action="{{ url_for('auth.guestLogin') }}" method="post" id="registerFrm">
+        <h2>Bitte überprüfen Sie Ihre Daten</h2>
+        <b>Wichtig: Die Daten können nicht mehr geändert werden</b>
+
+        <ul class="list-unstyled">
+            <li>Firma: {{ company }}</li>
+            <li>EMail: {{ mail }}</li>
+            <li>Telefon: {{ telephone }}</li>
+            <li>Ansprechpartner: {{ contact }}</li>
+            <li>Tag: {{ day }}</li>
+            <li>Anzahl Tische: {{ tables }}</li>
+            <li>Anzahl Stühle: {{ chairs }}</li>
+
+            {% if presentationTopic %}
+            <li>Präsentationsthema: {{ presentationTopic }}</li>
+            <li>Präsentationslänge: {{ presentationDuration }}</li>
+            {% endif %}
+        </ul>
+
+        <a class="btn btn-secondary" href="{{ url_for('auth.guestLogin') }}">Zurück</a>
+        <input class="btn btn-primary" type="submit" value="Anmelden">
+    </form>
+</div>
+{% endblock %}
