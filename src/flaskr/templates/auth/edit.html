@@ -1,8 +1,8 @@
-{% block header %}
-<h1>Register</h1>
+{% extends 'base.html' %} {% block header %}
+<h1>Ihre Daten</h1>
 {% endblock %} {% block content %}
 <div class="d-flex justify-content-center">
-  <form action="{{ url_for('auth.register') }}" method="post" id="registerFrm">
+  <form action="{{ url_for('auth.edit') }}" method="post" id="editFrm">
     <div class="mb-3">
       <label for="firmenName" class="form-label">Firmenname</label>
       <input
@@ -47,45 +47,21 @@
         required
       />
     </div>
-    <div class="mb-3">
-      <label for="passwort" class="form-label">Passwort</label>
-      <input
-        type="password"
-        class="form-control"
-        id="passwort"
-        placeholder="****"
-        name="password"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="passwortConfirm" class="form-label"
-        >Passwort erneut eingeben</label
-      >
-      <input
-        type="password"
-        class="form-control"
-        id="passwortConfirm"
-        placeholder="****"
-        required
-      />
-    </div>
-    <div id="error" style="color: red"></div>
 
-    <button class="btn btn-primary w-100" id="registerBtn">Registieren</button>
+    <button class="btn btn-primary w-100" id="editBtn">Speichern</button>
   </form>
 
   <div
     class="modal fade"
-    id="registerModal"
+    id="editModal"
     tabindex="-1"
-    aria-labelledby="registerModalLabel"
+    aria-labelledby="editModalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="registerModalLabel">Registrieren</h1>
+          <h1 class="modal-title fs-5" id="editModalLabel">Speichern</h1>
           <button
             type="button"
             class="btn-close"
@@ -112,8 +88,8 @@
           >
             Schließen
           </button>
-          <button type="button" class="btn btn-primary" id="registerFinal">
-            Registrieren
+          <button type="button" class="btn btn-primary" id="editFinal">
+            Speichern
           </button>
         </div>
       </div>
@@ -122,15 +98,15 @@
 </div>
 {% endblock %} {% block scripts %}
 <script>
-  const register = document.querySelector("#registerBtn");
-  const form = document.querySelector("#registerFrm");
-  const registerFinal = document.querySelector("#registerFinal");
+  const edit = document.querySelector("#editBtn");
+  const form = document.querySelector("#editFrm");
+  const editFinal = document.querySelector("#editFinal");
 
-  const mdl = new bootstrap.Modal(document.getElementById("registerModal"), {
+  const mdl = new bootstrap.Modal(document.getElementById("editModal"), {
     keyboard: false,
   });
 
-  register.addEventListener("click", (e) => {
+  edit.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -138,8 +114,6 @@
     const email = document.getElementById("email").value;
     const telephone = document.getElementById("telephone").value;
     const ansprechPartner = document.getElementById("ansprechPartner").value;
-    const passwort = document.getElementById("passwort").value;
-    const passwortConfirm = document.getElementById("passwortConfirm").value;
 
     const lblFirmenName = document.getElementById("lblFirmenName");
     const lblEmail = document.getElementById("lblEmail");
@@ -148,17 +122,11 @@
 
     const error = document.getElementById("error");
 
-    if (passwort != passwortConfirm) {
-      error.innerHTML = "Die Passwörter stimmen nicht überein";
-      return;
-    }
-
     if (
       firmenName == "" ||
       email == "" ||
       telephone == "" ||
-      ansprechPartner == "" ||
-      passwort == ""
+      ansprechPartner == ""
     )
       return;
 
@@ -170,7 +138,7 @@
     mdl.show();
   });
 
-  registerFinal.addEventListener("click", (e) => {
+  editFinal.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
 
