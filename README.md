@@ -57,7 +57,6 @@ Python Pakete installieren:
 pip install -r requirements.txt # 'resuirements.txt' liegt im Ordner './src/' ab.
 ```
 
-
 Starten:
 
 ```bash
