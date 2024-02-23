@@ -18,6 +18,12 @@
         </div>
 
         <input class="btn btn-primary w-100" type="submit" value="Login">
+
+        <a class="btn-link text-center mt-4" href="{{ url_for('auth.register') }}">Stattdessen Registieren</a>
+
+        {% if error %}
+            <b style="color: red">Benutzername oder Passwort falsch!</b>
+        {% endif %}
     </form>
 </div>
 {% endblock %}
