@@ -1,1 +1,44 @@
 {% extends 'base.html' %}
+
+{% block header %}
+<h1>Bestätigen</h1>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <form action="{{ url_for('internal.request_confirm') }}" method="post" id="registerFrm">
+        <h2>Bitte überprüfen Sie Ihre Daten</h2>
+        <b>Wichtig: Die Daten können nicht mehr geändert werden</b>
+
+        <ul class="list-unstyled">
+            <li>Firma: {{ company }}</li>
+            <li>EMail: {{ mail }}</li>
+            <li>Telefon: {{ telephone }}</li>
+            <li>Anmerkungen: {{ remarks }}</li>
+            <li>Ansprechpartner: {{ contact }}</li>
+            <li>Tag: {{ day }}</li>
+            <li>Anzahl Tische: {{ tables }}</li>
+            <li>Anzahl Stühle: {{ chairs }}</li>
+
+            {% if presentationTopic %}
+            <li>Präsentationsthema: {{ presentationTopic }}</li>
+            <li>Präsentationslänge: {{ presentationDuration }}</li>
+            {% endif %}
+        </ul>
+
+        <input type="hidden" value="{{ company }}" name="company" />
+        <input type="hidden" value="{{ mail }}" name="email" />
+        <input type="hidden" value="{{ telephone }}" name="telephone" />
+        <input type="hidden" value="{{ remarks }}" name="remarks" />
+        <input type="hidden" value="{{ contact }}" name="contact" />
+        <input type="hidden" value="{{ day }}" name="day" />
+        <input type="hidden" value="{{ tables }}" name="tables" />
+        <input type="hidden" value="{{ chairs }}" name="chairs" />
+        <input type="hidden" value="{{ presentationDuration }}" name="presentationDuration" />
+        <input type="hidden" value="{{ presentationTopic }}" name="presentationTopic" />
+
+        <a class="btn btn-secondary" href="{{ url_for('auth.guestLogin') }}">Zurück</a>
+        <input class="btn btn-primary" type="submit" value="Anmelden">
+    </form>
+</div>
+{% endblock %}

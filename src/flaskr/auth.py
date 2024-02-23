@@ -52,7 +52,33 @@ def login():
 
 @bp.route('/guestLogin', methods=['GET', 'POST'])
 def guestLogin():
-    return render_template('auth/guestLogin.html')
+    if request.method == 'POST':
+        company = request.form['companyName']
+        mail = request.form['email']
+        telephone = request.form['telephone']
+        contact = request.form['contact']
+        day = request.form['day']
+        tables = request.form['tables']
+        chairs = request.form['chairs']
+        remarks = request.form['remarks']
+        presentationTopic = request.form['presentationTopic']
+        presentationDuration = request.form['presentationDuration']
+
+        return render_template(
+            'internal/requestConfirm.html',
+            company=company,
+            mail=mail,
+            telephone=telephone,
+            contact=contact,
+            remarks=remarks,
+            day=day,
+            tables=tables,
+            chairs=chairs,
+            presentationDuration=presentationDuration,
+            presentationTopic=presentationTopic
+        )
+    else:
+        return render_template('auth/guestLogin.html')
 
 
 @bp.route('/edit', methods=['GET', 'POST'])

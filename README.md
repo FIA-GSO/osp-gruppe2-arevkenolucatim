@@ -12,7 +12,6 @@
 - Luca Mienert
 
 ## Orga
-
 Im Projects-Tab und Issues-Tab finden sich die Arbeitspakete
 
 ### Docs
@@ -57,7 +56,6 @@ Python Pakete installieren:
 ``` bash
 pip install -r requirements.txt # 'resuirements.txt' liegt im Ordner './src/' ab.
 ```
-
 
 Starten:
 

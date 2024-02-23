@@ -37,3 +37,21 @@ CREATE TABLE Request (
 	LectureLength   INTEGER,
 	Status	        INTEGER NOT NULL
 );
+
+/*
+ * Anmeldeformulardaten
+ */
+CREATE TABLE GuestRequest (
+	ID	            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	Company			TEXT,
+	Email			TEXT,
+	Telephone		TEXT,
+	Contact			TEXT,
+	Remarks			TEXT,
+	Days	        INTEGER NOT NULL,
+	TableCount	    INTEGER,
+	ChairCount	    INTEGER,
+	LectureTopic	TEXT,
+	LectureLength   INTEGER,
+	Status	        INTEGER NOT NULL
+);

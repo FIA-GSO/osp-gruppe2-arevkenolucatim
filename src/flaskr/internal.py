@@ -10,9 +10,34 @@ def company_view():
     return render_template('internal/companyView.html')
 
 
-@bp.route('/requestConfirm', methods=['GET'])
+@bp.route('/requestConfirm', methods=['GET','POST'])
 def request_confirm():
-    return render_template('internal/requestConfirm.html')
+    if request.method == 'POST':
+        company = request.form['company']
+        mail = request.form['email']
+        telephone = request.form['telephone']
+        remarks = request.form['remarks']
+        contact = request.form['contact']
+        day = request.form['day']
+        tables = request.form['tables']
+        chairs = request.form['chairs']
+        presentationTopic = request.form['presentationTopic']
+        presentationDuration = request.form['presentationDuration']
+
+        sql = '''
+        INSERT INTO GuestRequest (
+            Company,Email,Telephone,Contact,Remarks,Days,TableCount,ChairCount,LectureTopic,LectureLength,Status
+        ) 
+        VALUES(?,?,?,?,?,?,?,?,?,?,?)
+        '''
+
+        db = get_db()
+        db.execute(sql, (company,mail,telephone,contact,remarks,day,tables,chairs,presentationTopic,presentationDuration,0))
+        db.commit()
+
+        return redirect('/')
+    else:
+        return render_template('internal/requestConfirm.html')
 
 
 @bp.route('/organisation', methods=['GET', 'POST'])
