@@ -2,24 +2,26 @@
 
 {% block content %}
     <h2>Organizational view</h2>
-    <table>
+    <div class="d-flex justify-content-center w-100 text-center">
+        <table>
         <thead>
-			<th>Firmenname</th>
-			<th>E-Mail</th>
-			<th>Ansprechpartner</th>
-			<th>Telefon</th>
-			<th>Tag</th>
-			<th>Anmerkungen</th>
-			<th>Tische</th>
-			<th>Stühl</th>
-			<th>Detail</th>
-			<th>Bestätigen</th>
-			<th>Ablehnen</th>
+            <th class="p-3">ID</th>
+			<th class="p-3">Firmenname</th>
+			<th class="p-3">E-Mail</th>
+			<th class="p-3">Ansprechpartner</th>
+			<th class="p-3">Telefon</th>
+			<th class="p-3">Tag</th>
+			<th class="p-3">Anmerkungen</th>
+			<th class="p-3">Tische</th>
+			<th class="p-3">Stühl</th>
+			<th class="p-3">Bestätigen</th>
+			<th class="p-3">Ablehnen</th>
 			<!-- TODO: Add Status column? -->
 		</thead>
         <tbody>
             {% for row in data %}
                 <tr>
+                    <td>{{ row['RequestID'] }}</td>
                     <td>{{ row['Company'] }}</td>
                     <td>{{ row['Email'] }}</td>
                     <td>{{ row['Contact'] }}</td>
@@ -28,12 +30,16 @@
                     <td>{{ row['Remarks'] }}</td>
                     <td>{{ row['TableCount'] }}</td>
                     <td>{{ row['ChairCount'] }}</td>
-                    <td><input type="button" value="Detail"></td>
-                    <td><input type="button" value="Bestätigen"></td>
-                    <td><input type="button" value="Ablehnen"></td>
+                    <form method="post" action="/accept">
+                        <td><input type="hidden" value="{{ row['RequestID'] }}" name="ID"><input type="submit" value="Bestätigen"></td>
+                    </form>
+                    <form method="post" action="/deny">
+                        <td><input type="hidden" value="{{ row['RequestID'] }}" name="ID"><input type="submit" value="Ablehnen"></td>
+                    </form>
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
+        </table>
+    </div>
 
 {% endblock %}
