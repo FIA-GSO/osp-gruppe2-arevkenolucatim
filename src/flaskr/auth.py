@@ -45,7 +45,7 @@ def login():
         if cur.fetchone() != None:
             return redirect('../company')
         else:
-            return render_template('error.html')
+            return render_template('auth/login.html', error=True)
     else:
         return render_template('auth/login.html')
 
