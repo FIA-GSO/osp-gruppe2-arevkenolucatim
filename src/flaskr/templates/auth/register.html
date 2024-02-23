@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="d-flex justify-content-center">
     <form action="{{ url_for('auth.register') }}" method="post" id="registerFrm">
         <div class="mb-3">
             <label for="firmenName" class="form-label">Firmenname</label>
@@ -33,7 +33,7 @@
         </div>
         <div id="error" style="color: red"></div>
 
-        <button class="btn btn-primary" id="registerBtn">Registieren</button>
+        <button class="btn btn-primary w-100" id="registerBtn">Registieren</button>
     </form>
 
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
