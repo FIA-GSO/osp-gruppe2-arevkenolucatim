@@ -132,6 +132,9 @@
 </div>
 {% endblock %} {% block scripts %}
 <script>
+    const companyIDInputLabel = document.getElementById("companyIDInput");
+    companyIDInputLabel.value = localStorage.getItem("loggedInUserId");
+
   const edit = document.querySelector("#editBtn");
   const form = document.querySelector("#editFrm");
   const editFinal = document.querySelector("#editFinal");

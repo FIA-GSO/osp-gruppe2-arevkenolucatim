@@ -98,35 +98,13 @@ def guestLogin():
         return render_template('auth/guestLogin.html')
 
 
-""" @bp.route('/requestEdit', methods=['GET', 'POST'])
-def requestEdit():
-    if request.method == 'POST':
-        day = request.form['day']
-        remarks = request.form['remarks']
-        tables = request.form['tables']
-        chairs = request.form['chairs']
-        presentationTopic = request.form['presentationTopic']
-        presentationDuration = request.form['presentationDuration']
-        return render_template(
-            'internal/requestConfirm.html'
-            day=day,
-            remarks=remarks,
-            tables=tables,
-            chairs=chairs,
-            presentationTopic=presentationTopic,
-            presentationDuration=presentationDuration
-        )
-    else:
-        return render_template('') """
-
-
 @bp.route('/edit', methods=['GET', 'POST'])
 def edit():
     if request.method == "GET":
         return render_template('auth/edit.html')
     else:
         post_data = {
-            "companyID": request.form.get("companyIDInput", None),
+            "companyID": request.form.get("companyID", None),
             "companyName": request.form.get("companyName", None),
             "email": request.form.get("email", None),
             "telephone": request.form.get("telephone", None), # May be ""
@@ -134,7 +112,7 @@ def edit():
             "passwd": request.form.get("password", None)
         }
 
-        hashed = bcrypt.hashpw(post_data['passwd'], salt)
+        hashed = bcrypt.hashpw(bytes(post_data['passwd'], 'utf-8'), salt)
 
 
         sql1 = "SELECT * FROM User WHERE ID = ? AND Password = ?"
@@ -143,7 +121,9 @@ def edit():
         db = get_db()
 
         res = db.execute(sql1, (post_data["companyID"], hashed)).fetchone()
+        print(res)
         if res == None:
+            print("No user with that ID: ", post_data["companyID"])
             return redirect(url_for("public.error")) # Error: User with this ID doesn't exist.
         
         db.execute(sql2, (post_data["companyName"], post_data["email"], post_data["contact"], post_data["telephone"], post_data["companyID"]))        
