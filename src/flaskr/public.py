@@ -18,3 +18,7 @@ def faq():
 @bp.route('/policy', methods=['GET'])
 def policy():
     return render_template('public/policy.html')
+
+@bp.route('/error', methods=["GET"])
+def error():
+    return render_template("error.html")

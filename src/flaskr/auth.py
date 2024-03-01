@@ -108,9 +108,26 @@ def edit():
             "companyName": request.form.get("companyName", None),
             "email": request.form.get("email", None),
             "telephone": request.form.get("telephone", None), # May be ""
-            "contact": request.form.get("contact", None) # May be ""
+            "contact": request.form.get("contact", None), # May be ""
+            "passwd": request.form.get("password", None)
         }
 
+        hashed = bcrypt.hashpw(post_data['passwd'], salt)
+
+
+        sql1 = "SELECT * FROM User WHERE ID = ? AND Password = ?"
+        sql2 = "UPDATE User SET Company = ?, Email = ?, Contact = ?, Telephone = ? WHERE ID = ?"
+
+        db = get_db()
+
+        res = db.execute(sql1, (post_data["companyID"], hashed)).fetchone()
+        if res == None:
+            return redirect(url_for("public.error")) # Error: User with this ID doesn't exist.
+        
+        db.execute(sql2, (post_data["companyName"], post_data["email"], post_data["contact"], post_data["telephone"], post_data["companyID"]))        
+        db.commit()
+
+        return redirect(url_for("auth.login"))
         # TODO: Update the company (with the company ID from localstorage) with the specified 'post_data'.
         # TODO: Redirect to the correct page after that (most likely to login)
 
