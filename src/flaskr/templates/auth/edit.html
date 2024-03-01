@@ -8,6 +8,9 @@
 <div class="d-flex justify-content-center">
     <div class="w-50">
         <form action="{{ url_for('auth.edit') }}" method="post" id="editFrm">
+            <!-- TODO: Need an extra field for the companies ID, extracted from the localstorage on pageload -->
+            <input type="hidden" name="companyID" value="-1" id="companyIDInput">
+
             <div class="mb-3">
                 <label for="firmenName" class="form-label">Firmenname</label>
                 <input type="text" class="form-control" id="firmenName" placeholder="Firmenname" name="companyName" required />
@@ -66,6 +69,10 @@
 
 {% block scripts %}
 <script>
+    // Fill company ID hidden input
+    const idInput = document.getElementById("companyIDInput");
+    idInput.value = localStorage.getItem("loggedInUser");
+
     const edit = document.querySelector("#editBtn")
     const form = document.querySelector("#editFrm")
     const editFinal = document.querySelector("#editFinal")

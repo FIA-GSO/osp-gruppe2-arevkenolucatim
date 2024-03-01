@@ -83,9 +83,18 @@ def guestLogin():
 
 @bp.route('/edit', methods=['GET', 'POST'])
 def edit():
-    # if request.method
-    # db = get_db()
-    # data = db.execute(
-    #     "SELECT * from User where Email =" + localStorage.
-    # ).fetchall()
-    return render_template('auth/edit.html')
+    if request.method == "GET":
+        return render_template('auth/edit.html')
+    else:
+        post_data = {
+            "companyID": request.form.get("companyIDInput", None),
+            "companyName": request.form.get("companyName", None),
+            "email": request.form.get("email", None),
+            "telephone": request.form.get("telephone", None), # May be ""
+            "contact": request.form.get("contact", None) # May be ""
+        }
+
+        # TODO: Update the company (with the company ID from localstorage) with the specified 'post_data'.
+        # TODO: Redirect to the correct page after that (most likely to login)
+
+
