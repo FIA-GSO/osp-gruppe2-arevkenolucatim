@@ -19,6 +19,10 @@ def faq():
 def policy():
     return render_template('public/policy.html')
 
+@bp.route('/association', methods=['GET'])
+def association():
+    return render_template('public/association.html')
+
 @bp.route('/error', methods=["GET"])
 def error():
     return render_template("error.html")
