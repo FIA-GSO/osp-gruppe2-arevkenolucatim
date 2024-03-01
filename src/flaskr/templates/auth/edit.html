@@ -5,6 +5,7 @@
 {% endblock %} 
 
 {% block content %}
+<a href="{{ url_for('internal.company_view') }}"><i class="fa fa-arrow-left"></i>Zurück</a>
 <div class="d-flex justify-content-center">
     <div class="w-50">
         <form action="{{ url_for('auth.edit') }}" method="post" id="editFrm">

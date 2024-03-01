@@ -5,9 +5,10 @@ from flaskr.db import get_db
 
 bp = Blueprint('internal', __name__, url_prefix='/')
 
-@bp.route('/company', methods=['GET', 'POST'])
-def company_view():
-    return render_template('internal/companyView.html')
+@bp.route('/company/<id>', defaults={'id': None}, methods=['GET'])
+@bp.route('/company/<id>', methods=['GET'])
+def company_view(id):
+    return render_template('internal/companyView.html', id=id)
 
 
 @bp.route('/requestConfirm', methods=['GET','POST'])
