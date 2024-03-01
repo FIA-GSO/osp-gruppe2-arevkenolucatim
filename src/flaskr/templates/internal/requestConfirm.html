@@ -29,7 +29,15 @@
                     <li>{{ contact }}</li>
 
                     <label for="day" class="form-label mt-2">Tag:</label>
-                    <li>{{ day }}</li>
+                    <li>
+                        {% if day == '1' %}
+                            <span>Freitag</span>
+                        {% elif day == '2' %}
+                            <span>Samstag</span>
+                        {% else %}
+                            <span>An beiden Tagen</span>
+                        {% endif %}
+                    </li>
 
                     <label for="tables" class="form-label mt-2">Anzahl Tische:</label>
                     <li>{{ tables }}</li>

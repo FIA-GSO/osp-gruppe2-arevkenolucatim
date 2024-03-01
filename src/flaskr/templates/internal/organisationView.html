@@ -6,47 +6,65 @@
 
 {% block content %}
 <div class="bg-white rounded p-10">
-        <div class="d-flex justify-content-center w-100 text-center">
-            <table class="p-5">
-                <thead>
-                    <th class="p-3">ID</th>
-                    <th class="p-3">Firmenname</th>
-                    <th class="p-3">E-Mail</th>
-                    <th class="p-3">Ansprechpartner</th>
-                    <th class="p-3">Telefon</th>
-                    <th class="p-3">Tag</th>
-                    <th class="p-3">Anmerkungen</th>
-                    <th class="p-3">Tische</th>
-                    <th class="p-3">Stühl</th>
-                    <th class="p-3">Status</th>
-                    <th class="p-3"></th>
-                    <th class="p-3"></th>
-                    <!-- TODO: Add Status column? -->
-                </thead>
-                <tbody>
-                    {% for row in data %}
-                    <tr>
-                        <td>{{ row['RequestID'] }}</td>
-                        <td>{{ row['Company'] }}</td>
-                        <td>{{ row['Email'] }}</td>
-                        <td>{{ row['Contact'] }}</td>
-                        <td>{{ row['Telephone'] }}</td>
-                        <td>{{ row['Days'] }}</td>
-                        <td>{{ row['Remarks'] }}</td>
-                        <td>{{ row['TableCount'] }}</td>
-                        <td>{{ row['ChairCount'] }}</td>
-                        <td>{{ row['StatusText'] }}</td>
-                        <form method="post" action="/approval">
-                            <td><input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID"><input type="submit" value="✅"></td>
-                        </form>
-                        <form method="post" action="/approval">
-                            <td><input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID"><input type="submit" value="❌"></td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-        </div>
-</div>
+    <div class="d-flex justify-content-center w-100 text-center">
 
+        <table class="p-5" id="tbl">
+            <thead>
+                <th class="p-3">ID</th>
+                <th class="p-3">Firmenname</th>
+                <th class="p-3">E-Mail</th>
+                <th class="p-3">Ansprechpartner</th>
+                <th class="p-3">Telefon</th>
+                <th class="p-3">Tag</th>
+                <th class="p-3">Anmerkungen</th>
+                <th class="p-3">Tische</th>
+                <th class="p-3">Stühle</th>
+                <th class="p-3">Status</th>
+                <th class="p-3"></th>
+                <th class="p-3"></th>
+                <!-- TODO: Add Status column? -->
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row['RequestID'] }}</td>
+                    <td>{{ row['Company'] }}</td>
+                    <td>{{ row['Email'] }}</td>
+                    <td>{{ row['Contact'] }}</td>
+                    <td>{{ row['Telephone'] }}</td>
+                    <td>{{ row['Days'] }}</td>
+                    <td>{{ row['Remarks'] }}</td>
+                    <td>{{ row['TableCount'] }}</td>
+                    <td>{{ row['ChairCount'] }}</td>
+                    <td>{{ row['StatusText'] }}</td>
+                    <form method="post" action="/approval">
+                        <td>
+                            <input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID">
+                            <button type="submit" class="btn btn-outline-success p-1"><i class="fa fa-check"></i></button>
+                        </td>
+                    </form>
+                    <form method="post" action="/approval">
+                        <td>
+                            <input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID">
+                            <button type="submit" class="btn btn-outline-danger p-1"><i class="fa fa-xmark"></i></button>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    new DataTable('#tbl', {
+        layout: {
+            topStart: {
+                buttons: ['pdf']
+            }
+        }
+    })
+</script>
 {% endblock %}

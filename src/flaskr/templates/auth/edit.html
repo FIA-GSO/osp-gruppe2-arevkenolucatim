@@ -5,7 +5,8 @@
 <div class="d-flex justify-content-center">
   <div class="w-50">
     <form action="{{ url_for('auth.edit') }}" method="post" id="editFrm">
-      <div class="mb-3">
+        <input type="hidden" name="companyID" value="-1" id="companyIDInput">
+    <div class="mb-3">
         <label for="firmenName" class="form-label">Firmenname</label>
         <input
           type="text"
@@ -15,7 +16,7 @@
           name="companyName"
           required
         />
-      </div>
+     </div>
 
       <div class="mb-3">
         <label for="email" class="form-label">E-Mail</label>
@@ -131,6 +132,9 @@
 </div>
 {% endblock %} {% block scripts %}
 <script>
+    const companyIDInputLabel = document.getElementById("companyIDInput");
+    companyIDInputLabel.value = localStorage.getItem("loggedInUserId");
+
   const edit = document.querySelector("#editBtn");
   const form = document.querySelector("#editFrm");
   const editFinal = document.querySelector("#editFinal");
