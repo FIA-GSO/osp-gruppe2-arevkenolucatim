@@ -22,7 +22,6 @@
                 <th class="p-3">Status</th>
                 <th class="p-3"></th>
                 <th class="p-3"></th>
-                <!-- TODO: Add Status column? -->
             </thead>
             <tbody>
                 {% for row in data %}
@@ -38,16 +37,24 @@
                     <td>{{ row['ChairCount'] }}</td>
                     <td>{{ row['StatusText'] }}</td>
                     <form method="post" action="/approval">
-                        <td>
-                            <input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID">
-                            <button type="submit" class="btn btn-outline-success p-1"><i class="fa fa-check"></i></button>
-                        </td>
+                        {% if row['StatusText'] != 'Akzeptiert' %}
+                            <td>
+                                <input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID">
+                                <button type="submit" class="btn btn-outline-success p-1"><i class="fa fa-check"></i></button>
+                            </td>
+                        {% else%}
+                            <td></td>
+                        {% endif %}
                     </form>
                     <form method="post" action="/approval">
-                        <td>
-                            <input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID">
-                            <button type="submit" class="btn btn-outline-danger p-1"><i class="fa fa-xmark"></i></button>
-                        </td>
+                        {% if row['StatusText'] == 'Akzeptiert' %}
+                            <td>
+                                <input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID">
+                                <button type="submit" class="btn btn-outline-danger p-1"><i class="fa fa-xmark"></i></button>
+                            </td>
+                        {% else%}
+                            <td></td>
+                        {% endif %}
                     </form>
                 </tr>
                 {% endfor %}

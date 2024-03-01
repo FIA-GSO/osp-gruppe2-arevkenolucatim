@@ -35,6 +35,7 @@
 
 {% block scripts %}
 <script>
+    localStorage.clear();
     const cur = localStorage.getItem('loggedInUser')
     const frm = document.getElementById('frm')
 
@@ -48,9 +49,8 @@
         e.preventDefault()
         
         frm.submit()
-        
-        const current = document.getElementById('email')
-        localStorage.setItem("loggedInUser", current.value)
+
+        localStorage.setItem("loggedInUser", document.getElementById("email").value);
     })
 </script>
 {% endblock %}
