@@ -18,7 +18,7 @@
                 <th class="p-3">Tag</th>
                 <th class="p-3">Anmerkungen</th>
                 <th class="p-3">Tische</th>
-                <th class="p-3">Stühl</th>
+                <th class="p-3">Stühle</th>
                 <th class="p-3">Status</th>
                 <th class="p-3"></th>
                 <th class="p-3"></th>
@@ -38,10 +38,16 @@
                     <td>{{ row['ChairCount'] }}</td>
                     <td>{{ row['StatusText'] }}</td>
                     <form method="post" action="/approval">
-                        <td><input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID"><input type="submit" value="✅"></td>
+                        <td>
+                            <input type="hidden" value="accept:{{ row['RequestID'] }}" name="ID">
+                            <button type="submit" class="btn btn-outline-success p-1"><i class="fa fa-check"></i></button>
+                        </td>
                     </form>
                     <form method="post" action="/approval">
-                        <td><input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID"><input type="submit" value="❌"></td>
+                        <td>
+                            <input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID">
+                            <button type="submit" class="btn btn-outline-danger p-1"><i class="fa fa-xmark"></i></button>
+                        </td>
                     </form>
                 </tr>
                 {% endfor %}
