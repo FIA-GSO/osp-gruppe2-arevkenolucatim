@@ -62,7 +62,7 @@ def login():
         if usr == 'ORGA':
             return redirect(url_for('internal.organisation_view'))
         else:
-            return redirect(url_for('internal.company_view'))
+            return redirect(url_for('internal.company_view', id=data[0]))
     else:
         return render_template('auth/login.html')
 
