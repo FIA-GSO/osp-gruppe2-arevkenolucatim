@@ -5,7 +5,7 @@ from flaskr.db import get_db
 import bcrypt
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-salt = bcrypt.gensalt()
+salt = b'$2b$12$fsOIhrONYR8ich65y3JaKe'
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -41,11 +41,19 @@ def login():
         SELECT * FROM User WHERE Email = ? AND Password = ?
         '''
         
-        cur = get_db().execute(sql, (request.form["email"], hashed))
-        if cur.fetchone() != None:
-            return redirect('../company')
+        db = get_db()
+        cur = db.execute(sql, (request.form["email"], hashed))
+        data = cur.fetchone()
+
+        if data == None:
+            return redirect('../error')    
+
+        usr = data[1]
+
+        if usr == 'ORGA':
+            return redirect(url_for('internal.organisation_view'))
         else:
-            return render_template('auth/login.html', error=True)
+            return redirect(url_for('internal.company_view'))
     else:
         return render_template('auth/login.html')
 
