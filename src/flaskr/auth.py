@@ -14,6 +14,10 @@ def register():
             INSERT INTO User (Company,Password,Email,Contact,Telephone) VALUES (?, ?, ?, ?, ?)
         '''
 
+        sql2 = '''
+            SELECT * FROM User WHERE Email = ?
+        '''
+
         company = request.form['companyName']
         mail = request.form['email']
         contact = request.form['contact']
@@ -23,8 +27,13 @@ def register():
         hashed = bcrypt.hashpw(passw, salt)
 
         db = get_db()
-        db.execute(sql, (company,hashed,mail,contact,telephone))
-        db.commit()
+        cur = db.execute(sql2, (mail,))
+        
+        if cur.fetchone() == None:
+            db.execute(sql, (company,hashed,mail,contact,telephone))
+            db.commit()
+        else:
+            return redirect('register')
 
         return redirect('login')
     else:
