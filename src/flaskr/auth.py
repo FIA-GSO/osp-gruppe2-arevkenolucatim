@@ -81,6 +81,28 @@ def guestLogin():
         return render_template('auth/guestLogin.html')
 
 
+""" @bp.route('/requestEdit', methods=['GET', 'POST'])
+def requestEdit():
+    if request.method == 'POST':
+        day = request.form['day']
+        remarks = request.form['remarks']
+        tables = request.form['tables']
+        chairs = request.form['chairs']
+        presentationTopic = request.form['presentationTopic']
+        presentationDuration = request.form['presentationDuration']
+        return render_template(
+            'internal/requestConfirm.html'
+            day=day,
+            remarks=remarks,
+            tables=tables,
+            chairs=chairs,
+            presentationTopic=presentationTopic,
+            presentationDuration=presentationDuration
+        )
+    else:
+        return render_template('') """
+
+
 @bp.route('/edit', methods=['GET', 'POST'])
 def edit():
     # if request.method
