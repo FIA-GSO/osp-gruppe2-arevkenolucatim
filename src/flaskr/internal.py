@@ -41,6 +41,29 @@ def request_confirm():
         return render_template('internal/requestConfirm.html')
 
 
+@bp.route('/requestEdit', methods=['GET', 'POST'])
+def request_Edit():
+    if request.method == 'POST':
+        day = request.form['day']
+        tables = request.form['tables']
+        chairs = request.form['chairs']
+        remarks = request.form['remarks']
+        presentationTopic = request.form['presentationTopic']
+        presentationDuration = request.form['presentationDuration']
+
+        return render_template(
+            'internal/requestConfirm.html',
+            remarks=remarks,
+            day=day,
+            tables=tables,
+            chairs=chairs,
+            presentationDuration=presentationDuration,
+            presentationTopic=presentationTopic
+    )
+    else:
+        return render_template('internal/requestEdit.html')
+
+
 @bp.route('/organisation', methods=['GET', 'POST'])
 def organisation_view():
     db = get_db()
