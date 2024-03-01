@@ -47,7 +47,7 @@ def login():
         hashed = bcrypt.hashpw(passw, salt)
 
         sql = '''
-        SELECT * FROM User WHERE Email = ? AND Password = ?
+        SELECT ID, Company, Email FROM User WHERE Email = ? AND Password = ?
         '''
         
         db = get_db()
@@ -62,7 +62,8 @@ def login():
         if usr == 'ORGA':
             return redirect(url_for('internal.organisation_view'))
         else:
-            return redirect(url_for('internal.company_view', id=data[0]))
+            print(str(request.form["email"]))
+            return redirect(url_for('internal.company_view', id=data[0], email=str(request.form["email"])))
     else:
         return render_template('auth/login.html')
 
