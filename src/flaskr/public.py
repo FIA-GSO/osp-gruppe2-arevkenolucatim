@@ -18,3 +18,7 @@ def faq():
 @bp.route('/policy', methods=['GET'])
 def policy():
     return render_template('public/policy.html')
+
+@bp.route('/association', methods=['GET'])
+def association():
+    return render_template('public/association.html')
