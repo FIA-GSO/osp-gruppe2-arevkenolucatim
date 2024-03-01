@@ -5,13 +5,17 @@ from flaskr.db import get_db
 import bcrypt
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-salt = bcrypt.gensalt()
+salt = b'$2b$12$fsOIhrONYR8ich65y3JaKe'
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         sql = '''
             INSERT INTO User (Company,Password,Email,Contact,Telephone) VALUES (?, ?, ?, ?, ?)
+        '''
+
+        sql2 = '''
+            SELECT * FROM User WHERE Email = ?
         '''
 
         company = request.form['companyName']
@@ -23,8 +27,13 @@ def register():
         hashed = bcrypt.hashpw(passw, salt)
 
         db = get_db()
-        db.execute(sql, (company,hashed,mail,contact,telephone))
-        db.commit()
+        cur = db.execute(sql2, (mail,))
+        
+        if cur.fetchone() == None:
+            db.execute(sql, (company,hashed,mail,contact,telephone))
+            db.commit()
+        else:
+            return redirect('register')
 
         return redirect('login')
     else:
@@ -41,11 +50,19 @@ def login():
         SELECT * FROM User WHERE Email = ? AND Password = ?
         '''
         
-        cur = get_db().execute(sql, (request.form["email"], hashed))
-        if cur.fetchone() != None:
-            return redirect('../company')
+        db = get_db()
+        cur = db.execute(sql, (request.form["email"], hashed))
+        data = cur.fetchone()
+
+        if data == None:
+            return redirect('../error')    
+
+        usr = data[1]
+
+        if usr == 'ORGA':
+            return redirect(url_for('internal.organisation_view'))
         else:
-            return render_template('auth/login.html', error=True)
+            return redirect(url_for('internal.company_view', id=data[0]))
     else:
         return render_template('auth/login.html')
 
