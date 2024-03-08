@@ -47,8 +47,9 @@ CREATE TABLE GuestRequest (
 );
 
 -- Insert ORGA user
+-- Default Password: 'PXELKJn1fx1GDN6'
 INSERT INTO User (Company, Password, Email, Contact, Telephone)
-VALUES ('ORGA', 'PXELKJn1fx1GDN6', 'orga@gso.schule.koeln', 'N/A', 'N/A')
+VALUES ('ORGA', '$2b$12$fsOIhrONYR8ich65y3JaKeJ6QBBZd60yWTxJkt2Z/ixLjE.QQyu8a', 'orga@gso.schule.koeln', 'N/A', 'N/A')
 
 -- Insert initial questions
 INSERT INTO Faq (Question, Answer)
