@@ -41,13 +41,38 @@ def request_confirm():
         return render_template('internal/requestConfirm.html')
 
 
+@bp.route('/requestEdit', methods=['GET', 'POST'])
+def request_Edit():
+    if request.method == 'POST':
+        day = request.form['day']
+        tables = request.form['tables']
+        chairs = request.form['chairs']
+        remarks = request.form['remarks']
+        presentationTopic = request.form['presentationTopic']
+        presentationDuration = request.form['presentationDuration']
+
+        return render_template(
+            'internal/requestConfirm.html',
+            remarks=remarks,
+            day=day,
+            tables=tables,
+            chairs=chairs,
+            presentationDuration=presentationDuration,
+            presentationTopic=presentationTopic
+    )
+    else:
+        return render_template('internal/requestEdit.html')
+
+
 @bp.route('/organisation', methods=['GET', 'POST'])
 def organisation_view():
     db = get_db()
     data = db.execute(
         "SELECT r.ID RequestID, u.Company, u.Email, u.Contact, u.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount, r.Status, CASE r.Status WHEN 0 THEN 'Ausstehend' WHEN 1 THEN 'Akzeptiert' WHEN 2 THEN 'Abgelehnt' ELSE 'Invalide' END StatusText FROM Request r INNER JOIN User u ON r.UserID = u.ID WHERE u.Company <> 'ORGA'"
     ).fetchall()
-
+    data2 = db.execute("SELECT r.ID RequestID, r.Company, r.Email, r.Contact, r.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount, r.Status, CASE r.Status WHEN 0 THEN 'Ausstehend' WHEN 1 THEN 'Akzeptiert' WHEN 2 THEN 'Abgelehnt' ELSE 'Invalide' END StatusText FROM GuestRequest r").fetchall()
+    for d in data2:
+        data.append(d)
     return render_template('internal/organisationView.html', data=data)
 
 
