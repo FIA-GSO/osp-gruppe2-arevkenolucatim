@@ -44,18 +44,24 @@ def request_confirm():
 @bp.route('/requestEdit', methods=['GET', 'POST'])
 def request_edit():
     if request.method == 'POST':
-        company = request.form['company']
         mail = request.form['mail']
-        telephone = request.form['telephone']
-        contact = request.form['contact']
         day = request.form['day']
         tables = request.form['tables']
         chairs = request.form['chairs']
         remarks = request.form['remarks']
         presentationTopic = request.form['presentationTopic']
         presentationDuration = request.form['presentationDuration']
-
-        return redirect('internal/requestConfirmRegisterd.html',
+        db = get_db()
+        data = db.execute("SELECT Company, telephone, Contact FROM User WHERE Email= ?", (mail,)).fetchone()
+        
+        if data == None:
+            return redirect("../error")
+        
+        company = data[0]
+        telephone = data[1]
+        contact = data[2]
+        
+        return render_template('internal/requestConfirmRegistered.html',
             company=company,
             mail=mail,
             telephone=telephone,
@@ -68,6 +74,10 @@ def request_edit():
             presentationTopic=presentationTopic
         )
     else:
+        
+        # Email abfangen
+        # SQl daten auslesen
+        # Felder mit daten füllen       
         return render_template('internal/requestEdit.html')
 
 
@@ -99,8 +109,8 @@ def accept_request():
 
     return "<meta http-equiv=\"refresh\" content=\"0; url=/organisation\">"
 
-@bp.route('/requestConfirmRegisterd', methods=['GET','POST'])
-def request_confirm_registerd():
+@bp.route('/requestConfirmRegistered', methods=['GET','POST'])
+def request_confirm_registered():
     if request.method == 'POST':
         company = request.form['company']
         mail = request.form['email']
@@ -112,7 +122,7 @@ def request_confirm_registerd():
         chairs = request.form['chairs']
         presentationTopic = request.form['presentationTopic']
         presentationDuration = request.form['presentationDuration']
-
+        
         sql = '''
         INSERT INTO Request (
             Company,Email,Telephone,Contact,Remarks,Days,TableCount,ChairCount,LectureTopic,LectureLength,Status
@@ -126,4 +136,4 @@ def request_confirm_registerd():
 
         return redirect('internal/CompanyView.html')
     else:
-        return render_template('internal/requestConfirmRegisterd.html')
+        return render_template('internal/requestConfirmRegistered.html')

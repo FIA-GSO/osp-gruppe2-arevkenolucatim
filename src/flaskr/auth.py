@@ -19,7 +19,7 @@ def register():
             SELECT * FROM User WHERE Email = ?
         '''
 
-        company = request.form['companyName'] + (str(random.randrange(0, 10000)) if request.form['companyName'] == "ORGA" else "")
+        company = request.form['companyName'] #+ (str(random.randrange(0, 10000)) if request.form['companyName'] == "ORGA" else "")
         mail = request.form['email']
         contact = request.form['contact']
         passw = bytes(request.form['password'], 'utf-8')

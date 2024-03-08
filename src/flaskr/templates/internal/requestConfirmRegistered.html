@@ -7,7 +7,7 @@
 {% block content %}
 <div class="d-flex justify-content-center">
     <div class="w-50">
-        <form action="{{ url_for('internal.request_confirm_registerd') }}" method="post" id="registerFrm">
+        <form action="{{ url_for('internal.request_confirm_registered') }}" method="post" id="registerFrm">
             <div class="row mt-4 mb-4">
                 <div class="col-md-6">
                     <label for="company" class="form-label mt-2">Firma:</label>
@@ -37,7 +37,7 @@
 
                     {% if presentationTopic %}
                     <label for="chairs" class="form-label mt-2">Präsentationsthema:</label>
-                    <li>Präsentationsthema: {{ presentationTopic }}</li>
+                    <li>{{ presentationTopic }}</li>
 
                     <label for="chairs" class="form-label mt-2">Präsentationslänge:</label>
 
