@@ -47,7 +47,9 @@ def organisation_view():
     data = db.execute(
         "SELECT r.ID RequestID, u.Company, u.Email, u.Contact, u.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount, r.Status, CASE r.Status WHEN 0 THEN 'Ausstehend' WHEN 1 THEN 'Akzeptiert' WHEN 2 THEN 'Abgelehnt' ELSE 'Invalide' END StatusText FROM Request r INNER JOIN User u ON r.UserID = u.ID WHERE u.Company <> 'ORGA'"
     ).fetchall()
-
+    data2 = db.execute("SELECT r.ID RequestID, r.Company, r.Email, r.Contact, r.Telephone, r.Days, r.Remarks, r.TableCount, r.ChairCount, r.Status, CASE r.Status WHEN 0 THEN 'Ausstehend' WHEN 1 THEN 'Akzeptiert' WHEN 2 THEN 'Abgelehnt' ELSE 'Invalide' END StatusText FROM GuestRequest r").fetchall()
+    for d in data2:
+        data.append(d)
     return render_template('internal/organisationView.html', data=data)
 
 
