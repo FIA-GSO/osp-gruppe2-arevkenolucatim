@@ -3,6 +3,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db
 import bcrypt
+import random
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 salt = b'$2b$12$fsOIhrONYR8ich65y3JaKe'
@@ -18,7 +19,7 @@ def register():
             SELECT * FROM User WHERE Email = ?
         '''
 
-        company = request.form['companyName']
+        company = request.form['companyName'] + (str(random.randrange(0, 10000)) if request.form['companyName'] == "ORGA" else "")
         mail = request.form['email']
         contact = request.form['contact']
         passw = bytes(request.form['password'], 'utf-8')
