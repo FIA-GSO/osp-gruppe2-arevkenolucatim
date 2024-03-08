@@ -8,7 +8,7 @@
 <div class="d-flex justify-content-center">
     <div class="w-50">
         <h3>An welchen Tagen möchten Sie mit einem Informationsstand teilnehmen?</h3>
-        <form action="{{ url_for('internal.request_Edit') }}" method="post" id="registerFrm">
+        <form action="{{ url_for('internal.request_edit') }}" method="post" id="registerFrm">
             <div class="d-flex justify-content-center">
                 <div class="mb-3">
                     <div class="row">
@@ -67,9 +67,8 @@
             </div>
             <div class="row">
                 <a class="col btn btn-primary w-50 m-1" href="{{ url_for('internal.company_view') }}">Zurück</a>
-                <a class="col btn btn-primary w-50 m-1" href="{{ url_for('internal.request_confirm') }}">Abspeichern</a>
+                <a class="col btn btn-primary w-50 m-1" href="{{ url_for('internal.request_confirm_registerd') }}">Abspeichern</a>
             </div>
-            <button class="btn btn-primary w-100">Tset</button>
         </form>
     </div>
 </div>
@@ -83,5 +82,56 @@
         
         presentation.style.display = hasPres.checked ? "block" : "none";
     }
+
+    const companyIDInputLabel = document.getElementById("companyIDInput");
+    companyIDInputLabel.value = localStorage.getItem("loggedInUserId");
+
+    const edit = document.querySelector("#editBtn");
+    const form = document.querySelector("#editFrm");
+    const editFinal = document.querySelector("#editFinal");
+
+    const mdl = new bootstrap.Modal(document.getElementById("editModal"), {
+        keyboard: false,
+    });
+
+    edit.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const firmenName = document.getElementById("firmenName").value;
+    const email = document.getElementById("email").value;
+    const telephone = document.getElementById("telephone").value;
+    const ansprechPartner = document.getElementById("ansprechPartner").value;
+
+    const lblFirmenName = document.getElementById("lblFirmenName");
+    const lblEmail = document.getElementById("lblEmail");
+    const lblTelephone = document.getElementById("lblTelephone");
+    const lblAnsprechPartner = document.getElementById("lblAnsprechPartner");
+
+    const error = document.getElementById("error");
+
+    if (
+      firmenName == "" ||
+      email == "" ||
+      telephone == "" ||
+      ansprechPartner == ""
+    )
+      return;
+
+    lblFirmenName.innerHTML = firmenName;
+    lblEmail.innerHTML = email;
+    lblTelephone.innerHTML = telephone;
+    lblAnsprechPartner.innerHTML = ansprechPartner;
+
+    mdl.show();
+    });
+
+  editFinal.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    form.submit();
+    mdl.hide();
+    });
 </script>
 {% endblock %}
