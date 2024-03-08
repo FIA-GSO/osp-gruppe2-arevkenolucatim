@@ -16,10 +16,10 @@ def register():
         '''
 
         sql2 = '''
-            SELECT * FROM User WHERE Email = ?
+            SELECT * FROM User WHERE Email = ? OR Company = ?
         '''
 
-        company = request.form['companyName'] + (str(random.randrange(0, 10000)) if request.form['companyName'] == "ORGA" else "")
+        company = request.form['companyName']
         mail = request.form['email']
         contact = request.form['contact']
         passw = bytes(request.form['password'], 'utf-8')
@@ -28,7 +28,7 @@ def register():
         hashed = bcrypt.hashpw(passw, salt)
 
         db = get_db()
-        cur = db.execute(sql2, (mail,))
+        cur = db.execute(sql2, (mail, company))
         
         if cur.fetchone() == None:
             db.execute(sql, (company,hashed,mail,contact,telephone))
@@ -47,16 +47,15 @@ def login():
         passw = bytes(request.form['password'], 'utf-8')
         hashed = bcrypt.hashpw(passw, salt)
 
-        sql = '''
-        SELECT ID, Company, Email FROM User WHERE Email = ? AND Password = ?
-        '''
+        sql = "SELECT ID, Company, Email FROM User WHERE Email = ? AND Password = ?"
         
         db = get_db()
         cur = db.execute(sql, (request.form["email"], hashed))
         data = cur.fetchone()
 
         if data == None:
-            return redirect('../error')    
+            print("No data")
+            return redirect('../error')
 
         usr = data[1]
 
