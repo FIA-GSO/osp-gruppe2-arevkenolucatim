@@ -46,10 +46,11 @@
                     <li>{{ chairs }}</li>
 
                     {% if presentationTopic %}
-                    <label for="chairs" class="form-label mt-2">Präsentationsthema:</label>
-                    <li>Präsentationsthema: {{ presentationTopic }}</li>
+                    <label for="presentationTopic" class="form-label mt-2">Präsentationsthema:</label>
 
-                    <label for="chairs" class="form-label mt-2">Präsentationslänge:</label>
+                    <li> {{ presentationTopic }}</li>
+
+                    <label for="presentationDuration" class="form-label mt-2">Präsentationslänge:</label>
 
                     <li> {{ presentationDuration }}</li>
                     {% endif %}
