@@ -64,14 +64,25 @@
                   document.getElementById("emailHidden").value =
                     localStorage.getItem("loggedInUser");
                 </script>
-
                 <button
+                  type="submit"
+                  style="
+                    border: none;
+                    background: none;
+                    text-align: center;
+                    text-decoration: none;
+                  "
+                  id="navParent"
+                  class="btn btn-link"
+                ></button>
+
+                <!-- <button
                   type="submit"
                   style="border: none; background: none; text-align: center"
                 >
                   <i class="invisible fa-solid fa-user m-2 text-black"></i
                   ><span id="navParent"></span>
-                </button>
+                </button> -->
                 <a id="logout" class="btn-link text-black" href="#"
                   ><i class="m-2 fa-solid fa-power-off"></i
                 ></a>

@@ -1,101 +1,162 @@
-{% extends 'base.html' %}
-
-{% block header %}
+{% extends 'base.html' %} {% block header %}
 <h1>Editieren der Anfragedaten</h1>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="d-flex justify-content-center">
-    <div class="w-50">
-        <h3>An welchen Tagen möchten Sie mit einem Informationsstand teilnehmen?</h3>
-        <form action="{{ url_for('internal.request_edit') }}" method="post" id="registerFrm">
-            <div class="d-flex justify-content-center">
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col">  
-                            <input type="radio" id="day1" name="day" value="1" required>
-                            <label for="day1" class="form-label"><b>Tag 1</b></label>
-                            <br>Freitag, <b>24.01.2025, 11:00-16:00 Uhr</b><br>(Aufbau zwischen 09:00 und 10:30 Uhr)
-                        </div>
-                        
-                        <div class="col">  
-                            <input type="radio" id="day2" name="day" value="2" required>
-                            <label for="day2" class="form-label"><b>Tag 2</b></label>
-                            <br>Samstag, <b>25.01.2025, 09:00-13:00 Uhr</b><br>(Aufbau zwischen 07:30 und 08:30 Uhr)
-                        </div>
-                    </div>
-    
-                    <input class="mt-4" type="radio" id="day3" name="day" value="3" required>
-                    <label for="day3" class="form-label"><b>An beiden Tagen teilnehmen</b></label>
-                </div>
+  <div class="w-50">
+    <h3>
+      An welchen Tagen möchten Sie mit einem Informationsstand teilnehmen?
+    </h3>
+    <form
+      action="{{ url_for('internal.request_edit') }}"
+      method="post"
+      id="registerFrm"
+    >
+      <div class="d-flex justify-content-center">
+        <div class="mb-3">
+          <div class="row">
+            <div class="col">
+              <input type="radio" id="day1" name="day" value="1" required />
+              <label for="day1" class="form-label"><b>Tag 1</b></label>
+              <br />Freitag, <b>24.01.2025, 11:00-16:00 Uhr</b><br />(Aufbau
+              zwischen 09:00 und 10:30 Uhr)
             </div>
-            <div class="mb-3">
-                <p><b>Standinformationen</b> (Westerwaldstr. 92, 51105 Köln, Sporthalle)</p>
-                <p>- Abmessungen der Standfläche: ca. 3m x 3m</p>
-                <p>- Stromanschluss (z.B. Beamer/Laptop) vorhanden. Darüber hinausgehenden Leistungsbedarf bitte unten im Freitextfeld <b>Bemerkungen</b> angeben.</p>
-                <p>- WLAN-Zugang vorhanden</p>
-                <p><b>Bemerkungen</b> (ggf. Wünsche, besondere Standaufbauten, etc.):</p>
-                <textarea rows="4" cols="50" id="remarks" name="remarks"></textarea>
+
+            <div class="col">
+              <input type="radio" id="day2" name="day" value="2" required />
+              <label for="day2" class="form-label"><b>Tag 2</b></label>
+              <br />Samstag, <b>25.01.2025, 09:00-13:00 Uhr</b><br />(Aufbau
+              zwischen 07:30 und 08:30 Uhr)
             </div>
-            <div class="row">
-                <div class="col">
-                    <label for="tables" class="form-label">Anzahl benötigter Tische</label>
-                    <input type="number" class="form-control m-1" id="tables" name="tables">
-                </div>
-                <div class="col">
-                    <label for="chairs" class="form-label">Anzahl benötigter Stühle</label>
-                    <input type="number" class="form-control m-1" id="chairs" name="chairs">
-                </div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="hasPresentation" class="form-label">Ich möchte eine Präsentation halten</label>
-                <input type="checkbox" name="hasPresentation" id="hasPresentation" onchange="hasPresentationToggle()">
-            </div>
-            
-            <div id="presentation" style="display: none">
-                <div class="mb-3">
-                    <label for="presentation" class="form-label">Präsentationsthema</label>
-                    <input type="text" class="form-control" id="presentation" name="presentationTopic">
-                </div>    
-                <div class="mb-3">
-                    <label for="presentationDuration" class="form-label">Präsentationslänge (Minuten)</label>
-                    <input type="number" class="form-control" id="presentationDuration" name="presentationDuration">
-                </div>
-            </div>
-            <input type='hidden' id='hiddenMail' value='' name="mail">
-            <div class="row">
-                <a class="col btn btn-primary w-50 m-1" href="{{ url_for('internal.company_view') }}">Zurück</a>
-                <button class="col btn btn-primary w-50 m-1" type="submit">Senden</button>
-            </div>
-        </form>
-    </div>
+          </div>
+
+          <input
+            class="mt-4"
+            type="radio"
+            id="day3"
+            name="day"
+            value="3"
+            required
+          />
+          <label for="day3" class="form-label"
+            ><b>An beiden Tagen teilnehmen</b></label
+          >
+        </div>
+      </div>
+      <div class="mb-3">
+        <p>
+          <b>Standinformationen</b> (Westerwaldstr. 92, 51105 Köln, Sporthalle)
+        </p>
+        <p>- Abmessungen der Standfläche: ca. 3m x 3m</p>
+        <p>
+          - Stromanschluss (z.B. Beamer/Laptop) vorhanden. Darüber
+          hinausgehenden Leistungsbedarf bitte unten im Freitextfeld
+          <b>Bemerkungen</b> angeben.
+        </p>
+        <p>- WLAN-Zugang vorhanden</p>
+        <p>
+          <b>Bemerkungen</b> (ggf. Wünsche, besondere Standaufbauten, etc.):
+        </p>
+        <textarea rows="4" cols="50" id="remarks" name="remarks"></textarea>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="tables" class="form-label"
+            >Anzahl benötigter Tische</label
+          >
+          <input
+            type="number"
+            class="form-control m-1"
+            id="tables"
+            name="tables"
+          />
+        </div>
+        <div class="col">
+          <label for="chairs" class="form-label"
+            >Anzahl benötigter Stühle</label
+          >
+          <input
+            type="number"
+            class="form-control m-1"
+            id="chairs"
+            name="chairs"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="hasPresentation" class="form-label"
+          >Ich möchte eine Präsentation halten</label
+        >
+        <input
+          type="checkbox"
+          name="hasPresentation"
+          id="hasPresentation"
+          onchange="hasPresentationToggle()"
+        />
+      </div>
+
+      <div id="presentation" style="display: none">
+        <div class="mb-3">
+          <label for="presentation" class="form-label"
+            >Präsentationsthema</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="presentation"
+            name="presentationTopic"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="presentationDuration" class="form-label"
+            >Präsentationslänge (Minuten)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="presentationDuration"
+            name="presentationDuration"
+          />
+        </div>
+      </div>
+      <input type="hidden" id="hiddenMail" value="" name="mail" />
+      <div class="row">
+        <a
+          class="col btn btn-secondary w-50 m-1"
+          href="{{ url_for('internal.company_view') }}"
+          >Zurück</a
+        >
+        <button class="col btn btn-primary w-50 m-1" type="submit">
+          Senden
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
+{% endblock %} {% block scripts %}
 <script>
-    document.getElementById("hiddenMail").value = localStorage.getItem("loggedInUser")
+  document.getElementById("hiddenMail").value =
+    localStorage.getItem("loggedInUser");
 
-    function hasPresentationToggle() {
-        const hasPres = document.getElementById("hasPresentation")
-        const presentation = document.getElementById("presentation")
-        
-        presentation.style.display = hasPres.checked ? "block" : "none";
-    }
+  function hasPresentationToggle() {
+    const hasPres = document.getElementById("hasPresentation");
+    const presentation = document.getElementById("presentation");
 
-    const companyIDInputLabel = document.getElementById("companyIDInput");
-    companyIDInputLabel.value = localStorage.getItem("loggedInUserId");
+    presentation.style.display = hasPres.checked ? "block" : "none";
+  }
 
-    const edit = document.querySelector("#editBtn");
-    const form = document.querySelector("#editFrm");
-    const editFinal = document.querySelector("#editFinal");
+  const companyIDInputLabel = document.getElementById("companyIDInput");
+  companyIDInputLabel.value = localStorage.getItem("loggedInUserId");
 
-    const mdl = new bootstrap.Modal(document.getElementById("editModal"), {
-        keyboard: false,
-    });
+  const edit = document.querySelector("#editBtn");
+  const form = document.querySelector("#editFrm");
+  const editFinal = document.querySelector("#editFinal");
 
-    edit.addEventListener("click", (e) => {
+  const mdl = new bootstrap.Modal(document.getElementById("editModal"), {
+    keyboard: false,
+  });
+
+  edit.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -125,7 +186,7 @@
     lblAnsprechPartner.innerHTML = ansprechPartner;
 
     mdl.show();
-    });
+  });
 
   editFinal.addEventListener("click", (e) => {
     e.preventDefault();
@@ -133,6 +194,6 @@
 
     form.submit();
     mdl.hide();
-    });
+  });
 </script>
 {% endblock %}
