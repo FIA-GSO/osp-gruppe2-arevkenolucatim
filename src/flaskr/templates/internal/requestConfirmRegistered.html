@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<!-- Bestaetigungs seite fuer Anmeldeanfragen von eingeloggten Usern -->
 <div class="d-flex justify-content-center">
     <div class="w-50">
         <form action="{{ url_for('internal.request_confirm_registered') }}" method="post" id="registerFrm">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+  <!-- Header der Seite -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -94,11 +95,11 @@
     </header>
 
     <section class="m-4 text-center">{% block header %}{% endblock %}</section>
-
+<!-- Hauptteil der jeweiligen Unterseiten -->
     <section class="container mb-4 mt-4" style="min-height: 50vh">
       {% block content %}{% endblock %}
     </section>
-
+<!-- Footer der Seite -->
     <footer class="bg-dark text-light mt-5 w-100 bottom-0">
       <div class="container py-3">
         <div class="row mb-4">
