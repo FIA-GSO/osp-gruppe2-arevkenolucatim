@@ -123,17 +123,22 @@ def request_confirm_registered():
         presentationTopic = request.form['presentationTopic']
         presentationDuration = request.form['presentationDuration']
         
+        s = "SELECT ID FROM User WHERE Company = ? AND Email = ?"
+
         sql = '''
         INSERT INTO Request (
-            Company,Email,Telephone,Contact,Remarks,Days,TableCount,ChairCount,LectureTopic,LectureLength,Status
+            UserID,Remarks,Days,TableCount,ChairCount,LectureTopic,LectureLength,Status
         ) 
-        VALUES(?,?,?,?,?,?,?,?,?,?,?)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)
         '''
 
         db = get_db()
-        db.execute(sql, (company,mail,telephone,contact,remarks,day,tables,chairs,presentationTopic,presentationDuration,0))
+
+        uid = db.execute(s, (company, mail)).fetchone()[0]
+
+        db.execute(sql, (str(uid), remarks, day, tables, chairs, presentationTopic, presentationDuration, 0))
         db.commit()
 
-        return redirect('internal/CompanyView.html')
+        return redirect(url_for('internal.company_view'))
     else:
         return render_template('internal/requestConfirmRegistered.html')
