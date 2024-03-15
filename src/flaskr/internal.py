@@ -124,6 +124,7 @@ def request_confirm_registered():
         presentationDuration = request.form['presentationDuration']
         
         s = "SELECT ID FROM User WHERE Company = ? AND Email = ?"
+        r = "SELECT ID FROM Request WHERE UserID = ?"
 
         sql = '''
         INSERT INTO Request (
@@ -132,11 +133,30 @@ def request_confirm_registered():
         VALUES(?, ?, ?, ?, ?, ?, ?, ?)
         '''
 
+        sql2 = '''
+        UPDATE Request
+        SET Remarks = ?,
+            Days = ?,
+            TableCount = ?,
+            ChairCount = ?,
+            LectureTopic = ?,
+            LectureLength = ?,
+            Status = ?
+        WHERE ID = ?
+        '''
+
         db = get_db()
 
-        uid = db.execute(s, (company, mail)).fetchone()[0]
+        uid = db.execute(s, (company, mail)).fetchone()[0] # UserID
+        rid = db.execute(r, (str(uid),)).fetchone()[0] # RequestID
 
-        db.execute(sql, (str(uid), remarks, day, tables, chairs, presentationTopic, presentationDuration, 0))
+        if rid != None:
+            # Update instead of insert
+            db.execute(sql2, (remarks, day, tables, chairs, presentationTopic, presentationDuration, 0, rid))
+        else:
+            # Insert instead of update
+            db.execute(sql, (str(uid), remarks, day, tables, chairs, presentationTopic, presentationDuration, 0))
+
         db.commit()
 
         return redirect(url_for('internal.company_view'))
