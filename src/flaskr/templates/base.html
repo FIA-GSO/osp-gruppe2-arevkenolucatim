@@ -34,7 +34,14 @@
     
                 <div>
                     <div id="vis" style="display: none">
-                        <a href="{{ url_for('auth.edit') }}"><i class="fa-solid fa-user m-2 text-black"></i><span id="navParent"></span></a>
+                        <form method="GET" action="/auth/edit">
+                            <input id="emailHidden" type="hidden" name="email">
+                            <script>
+                                document.getElementById("emailHidden").value = localStorage.getItem("loggedInUser");
+                            </script>
+
+                            <button type="submit"><i class="fa-solid fa-user m-2 text-black"></i><span id="navParent"></span></button>
+                        </form>
                         <a id="logout" class="btn-link text-black" href="#"><i class="m-2 fa-solid fa-power-off"></i></a>
                     </div>
                 </div>

@@ -101,8 +101,16 @@ def guestLogin():
 
 @bp.route('/edit', methods=['GET', 'POST'])
 def edit():
-    if request.method == "GET":
-        return render_template('auth/edit.html')
+    if request.method == "GET": 
+        email = request.args.get("email", None)
+        if email == None:
+            return redirect("../error")
+        
+        sql = "SELECT Company, Email, Telephone, Contact FROM User WHERE Email = ?"
+        db = get_db()
+        row = db.execute(sql, (email,)).fetchone()
+
+        return render_template('auth/edit.html', company=row[0], email=row[1], telephone=row[2], contact=row[3])
     else:
         post_data = {
             "companyID": request.form.get("companyID", None),
