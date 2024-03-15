@@ -47,7 +47,7 @@
                         {% endif %}
                     </form>
                     <form method="post" action="/approval">
-                        {% if row['StatusText'] == 'Akzeptiert' %}
+                        {% if row['StatusText'] != 'Abgelehnt' %}
                             <td>
                                 <input type="hidden" value="deny:{{ row['RequestID'] }}" name="ID">
                                 <button type="submit" class="btn btn-outline-danger p-1"><i class="fa fa-xmark"></i></button>
